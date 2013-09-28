@@ -1,0 +1,16 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.4",
+    "jade": "0.35",
+    "grunt": "0.4.1"
+  },
+  "devDependencies": {
+    "grunt-contrib": "~0.7.0",
+    "grunt-contrib-less": "~0.7.0",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-watch": "~0.7.0",
+  }
+}
