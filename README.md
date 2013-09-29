@@ -16,7 +16,11 @@ I'm still new with all of this.
       static/             --> all of the files to be used in on the client side
         stylesheets/      --> css files
           less/
-            *.less        --> stylesheets.less
+            vendor/
+              bootstrap/      --> less files from bootstrap
+                *.less
+              fonts/
+            style.less        --> stylesheets.less
           style.css       --> compiled stylesheet
         img/              --> image files
         scripts/               --> javascript files
@@ -28,11 +32,18 @@ I'm still new with all of this.
             services.coffee     --> custom angular services
           *.js            --> compiled coffeescript files
           lib/            --> angular and 3rd party JavaScript libraries
-            angular/
-              angular.js            --> the latest angular js
-              angular.min.js        --> the latest minified angular js
-              angular-*.js          --> angular add-on modules
-              version.txt           --> version number
+            vendor/
+              angular/
+                angular.js            --> the latest angular js
+                angular.min.js        --> the latest minified angular js
+                angular-*.js          --> angular add-on modules
+                version.txt           --> version number
+              bootstrap/
+                bootstrap.js          --> latest bootstrap js
+                bootstrap.min.js
+              jquery/
+                jquery.1.10.2.js      --> latest jquery js
+                jquery.1.10.2.js
       routes/
         coffee/
           api.coffee           --> route for serving JSON
