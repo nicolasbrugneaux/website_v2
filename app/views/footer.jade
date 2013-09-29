@@ -3,20 +3,31 @@ div.footer
 		div.col-lg-12
 			div.row
 				div.col-lg-12
-					div.col-lg-2
-						ul.list-unstyled
+					div.col-lg-4
+						div.col-lg-6
+							ul.list-unstyled
+								li
+									p.text-muted Navigation
+								li(ng-repeat='item in data.links.navigation' ng-class="{ active: item.link==data.location.path()}")
+									a.navigation(href='{{ item.link }}')
+										| {{ item.name }}
+						div.col-lg-6
+							ul.list-unstyled
+								li
+									p.text-muted Social
+								li(ng-repeat='item in data.links.social')
+									a.social(href='{{ item.link }}' target="_blank" class='social-{{ item.class }}')
+										| {{ item.name }}
+					div.col-lg-8
+						ul.list-unstyled.pull-right
 							li
-								| Navigation
-							li(ng-repeat='item in data.links.navigation' ng-class="{ active: item.link==data.location.path()}")
-								a.navigation(href='{{ item.link }}')
-									| {{ item.name }}
-					div.col-lg-2
-						ul.list-unstyled
+								b Powered by
 							li
-								| Social
-							li(ng-repeat='item in data.links.social')
-								a.social(href='{{ item.link }}' target="_blank" class='social-{{ item.class }}')
-									| {{ item.name }}
+								ul.list-unstyled.list-inline.footer-logos
+									li
+										a.icomoon-AngularJS(href="http://angularjs.org" target="_blank" class="footer-angular")
+									li
+										a.icomoon-nodejs_light(href="http://nodejs.org" target="_blank" class="footer-node")
 			hr
 			div.row
 				div.col-lg-12
@@ -26,5 +37,5 @@ div.footer
 							| {{ data.info.author }}
 					p.pull-right
 						a.btn.btn-default.btn-success(target="_blank" href="{{ data.info.repository }}")
-							| Browser the source code on 
-							span.icomoon-github-2
+							| Browser the source code on &nbsp;&nbsp;
+							i.icomoon-github-3
