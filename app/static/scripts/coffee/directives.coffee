@@ -1,6 +1,8 @@
 'use strict'
 
-# Directives
+###
+	@Directives
+###
 
 myApp = angular.module('myApp.directives', [])
 

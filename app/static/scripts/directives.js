@@ -1,5 +1,9 @@
 (function() {
   'use strict';
+  /*
+  	@Directives
+  */
+
   var myApp;
 
   myApp = angular.module('myApp.directives', []);

@@ -1,6 +1,8 @@
 'use strict'
 
-# Filters
+###
+	@Filters
+###
 
 myApp = angular.module('myApp.filters', [])
 

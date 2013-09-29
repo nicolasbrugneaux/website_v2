@@ -46,6 +46,7 @@ module.exports = function(grunt) {
 		watch: {
 			files: [
 				'./app/static/stylesheets/less/*',
+				'./app/static/stylesheets/less/vendor/bootstrap/*',
 				'./app/static/scripts/coffee/*',
 				'./app/coffee/*',
 				'./app/routes/coffee/*'

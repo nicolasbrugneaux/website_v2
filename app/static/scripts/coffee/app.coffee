@@ -1,6 +1,8 @@
 'use strict'
 
-# Declare app level module which depends on filters, and services
+###
+	@app: Declare app level module which depends on filters, and services
+###
 
 myApp = angular.module('myApp', [
 	'myApp.controllers'
@@ -19,7 +21,7 @@ myApp.config( ($routeProvider, $locationProvider) ->
 		ontroller: 'MyCtrl2'
 	})
 	$routeProvider.otherwise({
-		redirectTo: '/view1'
+		redirectTo: '/'
 	})
 
 	$locationProvider.html5Mode(true)

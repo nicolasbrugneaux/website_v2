@@ -1,5 +1,9 @@
 (function() {
   'use strict';
+  /*
+  	@Services
+  */
+
   var myApp;
 
   myApp = angular.module('myApp.services', []);

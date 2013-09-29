@@ -1,5 +1,9 @@
 (function() {
   'use strict';
+  /*
+  	@Controllers
+  */
+
   var myApp;
 
   myApp = angular.module('myApp.controllers', []);

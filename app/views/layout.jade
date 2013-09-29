@@ -1,9 +1,15 @@
 !!!
 html(ng-app="myApp")
-  head
-    meta(charset='utf8')
-    base(href='/')
-    title Angular Express Seed App
-    link(rel='stylesheet', href='stylesheets/style.css')
-  body
-    block body
+	head
+		meta(charset='utf8')
+		base(href='/')
+		title nicolasbrugneaux.me
+		// Le style
+		link(rel='stylesheet', href='stylesheets/style.css')
+	body
+		block nav
+			include nav
+		block body
+		block footer
+			include footer
+		block scripts

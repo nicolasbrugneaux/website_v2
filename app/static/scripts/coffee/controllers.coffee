@@ -1,6 +1,8 @@
 'use strict'
 
-# Controllers
+###
+	@Controllers
+###
 
 myApp = angular.module('myApp.controllers', [])
 

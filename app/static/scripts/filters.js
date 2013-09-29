@@ -1,5 +1,9 @@
 (function() {
   'use strict';
+  /*
+  	@Filters
+  */
+
   var myApp;
 
   myApp = angular.module('myApp.filters', []);
