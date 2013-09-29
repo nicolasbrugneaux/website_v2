@@ -7318,6 +7318,10 @@ input[type="color"]:focus,
     min-height: 200px;
   }
 }
+body {
+  border-top: 6px #18bc9c solid;
+  padding-top: 15px;
+}
 .skills .skill-details {
   margin-bottom: 3px;
 }
