@@ -1,0 +1,74 @@
+/* Make clicks pass-through */
+#ngprogress {
+  pointer-events: none;
+  -webkit-pointer-events: none;
+}
+/* Styling for the progressbar-container */
+.progressbar-container {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 99999;
+}
+/* Styling for the progressbar itself */
+
+.progressbar {
+  -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;
+  margin: 0;
+  padding: 0;
+  z-index: 99998;
+}
+/* Remove these to get rid of the spinner */
+#ngprogress {
+
+  .spinner {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    top: 15px;
+    right: 15px;
+    
+    .spinner-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+
+      border:  solid 2px transparent;
+      border-radius: 10px;
+
+      -webkit-animation: ngprogress-spinner 500ms linear infinite;
+         -moz-animation: ngprogress-spinner 500ms linear infinite;
+          -ms-animation: ngprogress-spinner 500ms linear infinite;
+           -o-animation: ngprogress-spinner 500ms linear infinite;
+              animation: ngprogress-spinner 500ms linear infinite;
+    }
+  }
+}
+
+@-webkit-keyframes ngprogress-spinner {
+  0%   { -webkit-transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-moz-keyframes ngprogress-spinner {
+  0%   { -moz-transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-o-keyframes ngprogress-spinner {
+  0%   { -o-transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-ms-keyframes ngprogress-spinner {
+  0%   { -ms-transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@keyframes ngprogress-spinner {
+  0%   { transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { transform: rotate(360deg); transform: rotate(360deg); }
+}
+

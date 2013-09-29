@@ -1,0 +1,892 @@
+@font-face {
+	font-family: 'nicolasbrugneaux-icons';
+	src:url('fonts/nicolasbrugneaux-icons.eot');
+	src:url('fonts/nicolasbrugneaux-icons.eot?#iefix') format('embedded-opentype'),
+		url('fonts/nicolasbrugneaux-icons.woff') format('woff'),
+		url('fonts/nicolasbrugneaux-icons.ttf') format('truetype'),
+		url('fonts/nicolasbrugneaux-icons.svg#nicolasbrugneaux-icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'nicolasbrugneaux-icons';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icomoon-"] {
+*/
+.icomoon-phone, .icomoon-smashing, .icomoon-vk, .icomoon-circles, .icomoon-behance, .icomoon-mixi, .icomoon-soundcloud, .icomoon-picasa, .icomoon-paypal, .icomoon-sina-weibo, .icomoon-renren, .icomoon-skype, .icomoon-skype-2, .icomoon-flattr, .icomoon-evernote, .icomoon-dropbox, .icomoon-instagram, .icomoon-qq, .icomoon-spotify, .icomoon-spotify-2, .icomoon-rdio, .icomoon-rdio-2, .icomoon-lastfm, .icomoon-lastfm-2, .icomoon-stumbleupon, .icomoon-stumbleupon-2, .icomoon-dribbble, .icomoon-dribbble-2, .icomoon-linkedin, .icomoon-linkedin-2, .icomoon-tumblr, .icomoon-tumblr-2, .icomoon-pinterest, .icomoon-pinterest-2, .icomoon-googleplus, .icomoon-googleplus-2, .icomoon-facebook, .icomoon-facebook-2, .icomoon-facebook-3, .icomoon-twitter, .icomoon-twitter-2, .icomoon-vimeo, .icomoon-vimeo-2, .icomoon-flickr, .icomoon-flickr-2, .icomoon-github, .icomoon-github-2, .icomoon-daniel-bruce, .icomoon-daniel-bruce-2, .icomoon-cc-share, .icomoon-cc-share-2, .icomoon-cc-zero, .icomoon-cc-pd, .icomoon-cc-nd, .icomoon-cc-sa, .icomoon-cc-nc-jp, .icomoon-cc-nc-eu, .icomoon-cc-nc, .icomoon-cc-by, .icomoon-cc, .icomoon-dot, .icomoon-dots, .icomoon-ellipsis, .icomoon-menu, .icomoon-arrow-right, .icomoon-arrow-up, .icomoon-arrow-down, .icomoon-arrow-left, .icomoon-untitled, .icomoon-arrow-up-2, .icomoon-arrow-down-2, .icomoon-arrow-left-2, .icomoon-arrow-right-2, .icomoon-arrow-up-3, .icomoon-arrow-down-3, .icomoon-arrow-left-3, .icomoon-arrow-right-3, .icomoon-arrow-up-4, .icomoon-arrow-down-4, .icomoon-arrow-left-4, .icomoon-arrow-right-4, .icomoon-arrow-up-5, .icomoon-arrow-down-5, .icomoon-arrow-left-5, .icomoon-arrow-right-5, .icomoon-arrow-up-6, .icomoon-arrow-down-6, .icomoon-arrow-left-6, .icomoon-arrow-right-6, .icomoon-arrow-up-7, .icomoon-arrow-down-7, .icomoon-arrow-left-7, .icomoon-arrow-right-7, .icomoon-arrow-up--upload, .icomoon-arrow-down-8, .icomoon-arrow-left-8, .icomoon-flow-parallel, .icomoon-flow-line, .icomoon-flow-tree, .icomoon-flow-branch, .icomoon-flow-cascade, .icomoon-mute, .icomoon-sound, .icomoon-volume, .icomoon-resize-shrink, .icomoon-resize-enlarge, .icomoon-last, .icomoon-first, .icomoon-previous, .icomoon-next, .icomoon-stop, .icomoon-record, .icomoon-pause, .icomoon-play, .icomoon-book, .icomoon-bookmarks, .icomoon-bookmark, .icomoon-upload, .icomoon-cloud, .icomoon-install, .icomoon-disk, .icomoon-download, .icomoon-upload-2, .icomoon-trash, .icomoon-archive, .icomoon-folder, .icomoon-music, .icomoon-video, .icomoon-pictures, .icomoon-landscape, .icomoon-docs, .icomoon-document, .icomoon-text, .icomoon-text-2, .icomoon-list, .icomoon-layout, .icomoon-add-to-list, .icomoon-list-2, .icomoon-switch, .icomoon-back, .icomoon-history, .icomoon-loop, .icomoon-retweet, .icomoon-arrow, .icomoon-arrow-2, .icomoon-shuffle, .icomoon-ccw, .icomoon-cw, .icomoon-cycle, .icomoon-warning, .icomoon-help, .icomoon-question, .icomoon-info, .icomoon-info-2, .icomoon-blocked, .icomoon-erase, .icomoon-plus, .icomoon-minus, .icomoon-cross, .icomoon-plus-2, .icomoon-minus-2, .icomoon-cross-2, .icomoon-plus-3, .icomoon-minus-3, .icomoon-cross-3, .icomoon-checkmark, .icomoon-login, .icomoon-logout, .icomoon-lock-open, .icomoon-lock, .icomoon-graph, .icomoon-bars, .icomoon-pie, .icomoon-statistics, .icomoon-untitled-2, .icomoon-droplets, .icomoon-thermometer, .icomoon-signal, .icomoon-rss, .icomoon-ticket, .icomoon-box, .icomoon-cart, .icomoon-clipboard, .icomoon-voicemail, .icomoon-database, .icomoon-credit-card, .icomoon-light-bulb, .icomoon-infinity, .icomoon-screen, .icomoon-code, .icomoon-adjust, .icomoon-sun, .icomoon-sun-2, .icomoon-progress-0, .icomoon-brogress-1, .icomoon-progress-2, .icomoon-progress-3, .icomoon-publish, .icomoon-browser, .icomoon-keyboard, .icomoon-earth, .icomoon-cone, .icomoon-suitcase, .icomoon-brush, .icomoon-rocket, .icomoon-cup, .icomoon-drive, .icomoon-magnet, .icomoon-bucket, .icomoon-battery, .icomoon-key, .icomoon-network, .icomoon-language, .icomoon-gauge, .icomoon-hourglass, .icomoon-air, .icomoon-briefcase, .icomoon-cd, .icomoon-droplet, .icomoon-thunder, .icomoon-bolt, .icomoon-calendar, .icomoon-microphone, .icomoon-clock, .icomoon-eye, .icomoon-lifebuoy, .icomoon-airplane, .icomoon-bag, .icomoon-newspaper, .icomoon-book-2, .icomoon-graduation, .icomoon-new, .icomoon-music-2, .icomoon-music-3, .icomoon-leaf, .icomoon-palette, .icomoon-moon, .icomoon-megaphone, .icomoon-camera, .icomoon-tag, .icomoon-trophy, .icomoon-tools, .icomoon-cog, .icomoon-flag, .icomoon-link, .icomoon-bell, .icomoon-printer, .icomoon-flashlight, .icomoon-search, .icomoon-popup, .icomoon-house, .icomoon-quote, .icomoon-comment, .icomoon-chat, .icomoon-thumbs-down, .icomoon-thumbs-up, .icomoon-star, .icomoon-star-2, .icomoon-heart, .icomoon-heart-2, .icomoon-sharable, .icomoon-share, .icomoon-target, .icomoon-location, .icomoon-compass, .icomoon-map, .icomoon-location-2, .icomoon-export, .icomoon-vcard, .icomoon-user-add, .icomoon-users, .icomoon-user, .icomoon-forward, .icomoon-reply-all, .icomoon-reply, .icomoon-drawer, .icomoon-paperclip, .icomoon-feather, .icomoon-pencil, .icomoon-paperplane, .icomoon-mail, .icomoon-directions, .icomoon-mouse, .icomoon-mobile {
+	font-family: 'nicolasbrugneaux-icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icomoon-phone:before {
+	content: "\e1c3";
+}
+.icomoon-smashing:before {
+	content: "\e000";
+}
+.icomoon-vk:before {
+	content: "\e001";
+}
+.icomoon-circles:before {
+	content: "\e002";
+}
+.icomoon-behance:before {
+	content: "\e003";
+}
+.icomoon-mixi:before {
+	content: "\e004";
+}
+.icomoon-soundcloud:before {
+	content: "\e005";
+}
+.icomoon-picasa:before {
+	content: "\e006";
+}
+.icomoon-paypal:before {
+	content: "\e007";
+}
+.icomoon-sina-weibo:before {
+	content: "\e008";
+}
+.icomoon-renren:before {
+	content: "\e009";
+}
+.icomoon-skype:before {
+	content: "\e00a";
+}
+.icomoon-skype-2:before {
+	content: "\e00b";
+}
+.icomoon-flattr:before {
+	content: "\e00c";
+}
+.icomoon-evernote:before {
+	content: "\e00d";
+}
+.icomoon-dropbox:before {
+	content: "\e00e";
+}
+.icomoon-instagram:before {
+	content: "\e00f";
+}
+.icomoon-qq:before {
+	content: "\e010";
+}
+.icomoon-spotify:before {
+	content: "\e011";
+}
+.icomoon-spotify-2:before {
+	content: "\e012";
+}
+.icomoon-rdio:before {
+	content: "\e013";
+}
+.icomoon-rdio-2:before {
+	content: "\e014";
+}
+.icomoon-lastfm:before {
+	content: "\e015";
+}
+.icomoon-lastfm-2:before {
+	content: "\e016";
+}
+.icomoon-stumbleupon:before {
+	content: "\e017";
+}
+.icomoon-stumbleupon-2:before {
+	content: "\e018";
+}
+.icomoon-dribbble:before {
+	content: "\e019";
+}
+.icomoon-dribbble-2:before {
+	content: "\e01a";
+}
+.icomoon-linkedin:before {
+	content: "\e01b";
+}
+.icomoon-linkedin-2:before {
+	content: "\e01c";
+}
+.icomoon-tumblr:before {
+	content: "\e01d";
+}
+.icomoon-tumblr-2:before {
+	content: "\e01e";
+}
+.icomoon-pinterest:before {
+	content: "\e01f";
+}
+.icomoon-pinterest-2:before {
+	content: "\e020";
+}
+.icomoon-googleplus:before {
+	content: "\e021";
+}
+.icomoon-googleplus-2:before {
+	content: "\e022";
+}
+.icomoon-facebook:before {
+	content: "\e023";
+}
+.icomoon-facebook-2:before {
+	content: "\e024";
+}
+.icomoon-facebook-3:before {
+	content: "\e025";
+}
+.icomoon-twitter:before {
+	content: "\e026";
+}
+.icomoon-twitter-2:before {
+	content: "\e027";
+}
+.icomoon-vimeo:before {
+	content: "\e028";
+}
+.icomoon-vimeo-2:before {
+	content: "\e029";
+}
+.icomoon-flickr:before {
+	content: "\e02a";
+}
+.icomoon-flickr-2:before {
+	content: "\e02b";
+}
+.icomoon-github:before {
+	content: "\e02c";
+}
+.icomoon-github-2:before {
+	content: "\e02d";
+}
+.icomoon-daniel-bruce:before {
+	content: "\e02e";
+}
+.icomoon-daniel-bruce-2:before {
+	content: "\e02f";
+}
+.icomoon-cc-share:before {
+	content: "\e030";
+}
+.icomoon-cc-share-2:before {
+	content: "\e031";
+}
+.icomoon-cc-zero:before {
+	content: "\e032";
+}
+.icomoon-cc-pd:before {
+	content: "\e033";
+}
+.icomoon-cc-nd:before {
+	content: "\e034";
+}
+.icomoon-cc-sa:before {
+	content: "\e035";
+}
+.icomoon-cc-nc-jp:before {
+	content: "\e036";
+}
+.icomoon-cc-nc-eu:before {
+	content: "\e037";
+}
+.icomoon-cc-nc:before {
+	content: "\e038";
+}
+.icomoon-cc-by:before {
+	content: "\e039";
+}
+.icomoon-cc:before {
+	content: "\e03a";
+}
+.icomoon-dot:before {
+	content: "\e03b";
+}
+.icomoon-dots:before {
+	content: "\e03c";
+}
+.icomoon-ellipsis:before {
+	content: "\e03d";
+}
+.icomoon-menu:before {
+	content: "\e03e";
+}
+.icomoon-arrow-right:before {
+	content: "\e03f";
+}
+.icomoon-arrow-up:before {
+	content: "\e040";
+}
+.icomoon-arrow-down:before {
+	content: "\e041";
+}
+.icomoon-arrow-left:before {
+	content: "\e042";
+}
+.icomoon-untitled:before {
+	content: "\e043";
+}
+.icomoon-arrow-up-2:before {
+	content: "\e044";
+}
+.icomoon-arrow-down-2:before {
+	content: "\e045";
+}
+.icomoon-arrow-left-2:before {
+	content: "\e046";
+}
+.icomoon-arrow-right-2:before {
+	content: "\e047";
+}
+.icomoon-arrow-up-3:before {
+	content: "\e048";
+}
+.icomoon-arrow-down-3:before {
+	content: "\e049";
+}
+.icomoon-arrow-left-3:before {
+	content: "\e04a";
+}
+.icomoon-arrow-right-3:before {
+	content: "\e04b";
+}
+.icomoon-arrow-up-4:before {
+	content: "\e04c";
+}
+.icomoon-arrow-down-4:before {
+	content: "\e04d";
+}
+.icomoon-arrow-left-4:before {
+	content: "\e04e";
+}
+.icomoon-arrow-right-4:before {
+	content: "\e04f";
+}
+.icomoon-arrow-up-5:before {
+	content: "\e050";
+}
+.icomoon-arrow-down-5:before {
+	content: "\e051";
+}
+.icomoon-arrow-left-5:before {
+	content: "\e052";
+}
+.icomoon-arrow-right-5:before {
+	content: "\e053";
+}
+.icomoon-arrow-up-6:before {
+	content: "\e054";
+}
+.icomoon-arrow-down-6:before {
+	content: "\e055";
+}
+.icomoon-arrow-left-6:before {
+	content: "\e056";
+}
+.icomoon-arrow-right-6:before {
+	content: "\e057";
+}
+.icomoon-arrow-up-7:before {
+	content: "\e058";
+}
+.icomoon-arrow-down-7:before {
+	content: "\e059";
+}
+.icomoon-arrow-left-7:before {
+	content: "\e05a";
+}
+.icomoon-arrow-right-7:before {
+	content: "\e05b";
+}
+.icomoon-arrow-up--upload:before {
+	content: "\e05c";
+}
+.icomoon-arrow-down-8:before {
+	content: "\e05d";
+}
+.icomoon-arrow-left-8:before {
+	content: "\e05e";
+}
+.icomoon-flow-parallel:before {
+	content: "\e05f";
+}
+.icomoon-flow-line:before {
+	content: "\e060";
+}
+.icomoon-flow-tree:before {
+	content: "\e061";
+}
+.icomoon-flow-branch:before {
+	content: "\e062";
+}
+.icomoon-flow-cascade:before {
+	content: "\e063";
+}
+.icomoon-mute:before {
+	content: "\e064";
+}
+.icomoon-sound:before {
+	content: "\e065";
+}
+.icomoon-volume:before {
+	content: "\e066";
+}
+.icomoon-resize-shrink:before {
+	content: "\e067";
+}
+.icomoon-resize-enlarge:before {
+	content: "\e068";
+}
+.icomoon-last:before {
+	content: "\e069";
+}
+.icomoon-first:before {
+	content: "\e06a";
+}
+.icomoon-previous:before {
+	content: "\e06b";
+}
+.icomoon-next:before {
+	content: "\e06c";
+}
+.icomoon-stop:before {
+	content: "\e06d";
+}
+.icomoon-record:before {
+	content: "\e06e";
+}
+.icomoon-pause:before {
+	content: "\e06f";
+}
+.icomoon-play:before {
+	content: "\e070";
+}
+.icomoon-book:before {
+	content: "\e071";
+}
+.icomoon-bookmarks:before {
+	content: "\e072";
+}
+.icomoon-bookmark:before {
+	content: "\e073";
+}
+.icomoon-upload:before {
+	content: "\e074";
+}
+.icomoon-cloud:before {
+	content: "\e075";
+}
+.icomoon-install:before {
+	content: "\e076";
+}
+.icomoon-disk:before {
+	content: "\e077";
+}
+.icomoon-download:before {
+	content: "\e078";
+}
+.icomoon-upload-2:before {
+	content: "\e079";
+}
+.icomoon-trash:before {
+	content: "\e07a";
+}
+.icomoon-archive:before {
+	content: "\e07b";
+}
+.icomoon-folder:before {
+	content: "\e07c";
+}
+.icomoon-music:before {
+	content: "\e07d";
+}
+.icomoon-video:before {
+	content: "\e07e";
+}
+.icomoon-pictures:before {
+	content: "\e07f";
+}
+.icomoon-landscape:before {
+	content: "\e080";
+}
+.icomoon-docs:before {
+	content: "\e081";
+}
+.icomoon-document:before {
+	content: "\e082";
+}
+.icomoon-text:before {
+	content: "\e083";
+}
+.icomoon-text-2:before {
+	content: "\e084";
+}
+.icomoon-list:before {
+	content: "\e085";
+}
+.icomoon-layout:before {
+	content: "\e086";
+}
+.icomoon-add-to-list:before {
+	content: "\e087";
+}
+.icomoon-list-2:before {
+	content: "\e088";
+}
+.icomoon-switch:before {
+	content: "\e089";
+}
+.icomoon-back:before {
+	content: "\e08a";
+}
+.icomoon-history:before {
+	content: "\e08b";
+}
+.icomoon-loop:before {
+	content: "\e08c";
+}
+.icomoon-retweet:before {
+	content: "\e08d";
+}
+.icomoon-arrow:before {
+	content: "\e08e";
+}
+.icomoon-arrow-2:before {
+	content: "\e08f";
+}
+.icomoon-shuffle:before {
+	content: "\e090";
+}
+.icomoon-ccw:before {
+	content: "\e091";
+}
+.icomoon-cw:before {
+	content: "\e092";
+}
+.icomoon-cycle:before {
+	content: "\e093";
+}
+.icomoon-warning:before {
+	content: "\e094";
+}
+.icomoon-help:before {
+	content: "\e095";
+}
+.icomoon-question:before {
+	content: "\e096";
+}
+.icomoon-info:before {
+	content: "\e097";
+}
+.icomoon-info-2:before {
+	content: "\e098";
+}
+.icomoon-blocked:before {
+	content: "\e099";
+}
+.icomoon-erase:before {
+	content: "\e09a";
+}
+.icomoon-plus:before {
+	content: "\e09b";
+}
+.icomoon-minus:before {
+	content: "\e09c";
+}
+.icomoon-cross:before {
+	content: "\e09d";
+}
+.icomoon-plus-2:before {
+	content: "\e09e";
+}
+.icomoon-minus-2:before {
+	content: "\e09f";
+}
+.icomoon-cross-2:before {
+	content: "\e0a0";
+}
+.icomoon-plus-3:before {
+	content: "\e0a1";
+}
+.icomoon-minus-3:before {
+	content: "\e0a2";
+}
+.icomoon-cross-3:before {
+	content: "\e0a3";
+}
+.icomoon-checkmark:before {
+	content: "\e0a4";
+}
+.icomoon-login:before {
+	content: "\e0a5";
+}
+.icomoon-logout:before {
+	content: "\e0a6";
+}
+.icomoon-lock-open:before {
+	content: "\e0a7";
+}
+.icomoon-lock:before {
+	content: "\e0a8";
+}
+.icomoon-graph:before {
+	content: "\e0a9";
+}
+.icomoon-bars:before {
+	content: "\e0aa";
+}
+.icomoon-pie:before {
+	content: "\e0ab";
+}
+.icomoon-statistics:before {
+	content: "\e0ac";
+}
+.icomoon-untitled-2:before {
+	content: "\e0ad";
+}
+.icomoon-droplets:before {
+	content: "\e0ae";
+}
+.icomoon-thermometer:before {
+	content: "\e0af";
+}
+.icomoon-signal:before {
+	content: "\e0b0";
+}
+.icomoon-rss:before {
+	content: "\e0b1";
+}
+.icomoon-ticket:before {
+	content: "\e0b2";
+}
+.icomoon-box:before {
+	content: "\e0b3";
+}
+.icomoon-cart:before {
+	content: "\e0b4";
+}
+.icomoon-clipboard:before {
+	content: "\e0b5";
+}
+.icomoon-voicemail:before {
+	content: "\e0b6";
+}
+.icomoon-database:before {
+	content: "\e0b7";
+}
+.icomoon-credit-card:before {
+	content: "\e0b8";
+}
+.icomoon-light-bulb:before {
+	content: "\e0b9";
+}
+.icomoon-infinity:before {
+	content: "\e0ba";
+}
+.icomoon-screen:before {
+	content: "\e0bb";
+}
+.icomoon-code:before {
+	content: "\e0bc";
+}
+.icomoon-adjust:before {
+	content: "\e0bd";
+}
+.icomoon-sun:before {
+	content: "\e0be";
+}
+.icomoon-sun-2:before {
+	content: "\e0bf";
+}
+.icomoon-progress-0:before {
+	content: "\e0c0";
+}
+.icomoon-brogress-1:before {
+	content: "\e0c1";
+}
+.icomoon-progress-2:before {
+	content: "\e0c2";
+}
+.icomoon-progress-3:before {
+	content: "\e0c3";
+}
+.icomoon-publish:before {
+	content: "\e0c4";
+}
+.icomoon-browser:before {
+	content: "\e0c5";
+}
+.icomoon-keyboard:before {
+	content: "\e0c6";
+}
+.icomoon-earth:before {
+	content: "\e0c7";
+}
+.icomoon-cone:before {
+	content: "\e0c8";
+}
+.icomoon-suitcase:before {
+	content: "\e0c9";
+}
+.icomoon-brush:before {
+	content: "\e0ca";
+}
+.icomoon-rocket:before {
+	content: "\e0cb";
+}
+.icomoon-cup:before {
+	content: "\e0cc";
+}
+.icomoon-drive:before {
+	content: "\e0cd";
+}
+.icomoon-magnet:before {
+	content: "\e0ce";
+}
+.icomoon-bucket:before {
+	content: "\e0cf";
+}
+.icomoon-battery:before {
+	content: "\e0d0";
+}
+.icomoon-key:before {
+	content: "\e0d1";
+}
+.icomoon-network:before {
+	content: "\e0d2";
+}
+.icomoon-language:before {
+	content: "\e0d3";
+}
+.icomoon-gauge:before {
+	content: "\e0d4";
+}
+.icomoon-hourglass:before {
+	content: "\e0d5";
+}
+.icomoon-air:before {
+	content: "\e0d6";
+}
+.icomoon-briefcase:before {
+	content: "\e0d7";
+}
+.icomoon-cd:before {
+	content: "\e0d8";
+}
+.icomoon-droplet:before {
+	content: "\e0d9";
+}
+.icomoon-thunder:before {
+	content: "\e0da";
+}
+.icomoon-bolt:before {
+	content: "\e0db";
+}
+.icomoon-calendar:before {
+	content: "\e0dc";
+}
+.icomoon-microphone:before {
+	content: "\e0dd";
+}
+.icomoon-clock:before {
+	content: "\e0de";
+}
+.icomoon-eye:before {
+	content: "\e0df";
+}
+.icomoon-lifebuoy:before {
+	content: "\e0e0";
+}
+.icomoon-airplane:before {
+	content: "\e0e1";
+}
+.icomoon-bag:before {
+	content: "\e0e2";
+}
+.icomoon-newspaper:before {
+	content: "\e0e3";
+}
+.icomoon-book-2:before {
+	content: "\e0e4";
+}
+.icomoon-graduation:before {
+	content: "\e0e5";
+}
+.icomoon-new:before {
+	content: "\e0e6";
+}
+.icomoon-music-2:before {
+	content: "\e0e7";
+}
+.icomoon-music-3:before {
+	content: "\e0e8";
+}
+.icomoon-leaf:before {
+	content: "\e0e9";
+}
+.icomoon-palette:before {
+	content: "\e0ea";
+}
+.icomoon-moon:before {
+	content: "\e0eb";
+}
+.icomoon-megaphone:before {
+	content: "\e0ec";
+}
+.icomoon-camera:before {
+	content: "\e0ed";
+}
+.icomoon-tag:before {
+	content: "\e0ee";
+}
+.icomoon-trophy:before {
+	content: "\e0ef";
+}
+.icomoon-tools:before {
+	content: "\e0f0";
+}
+.icomoon-cog:before {
+	content: "\e0f1";
+}
+.icomoon-flag:before {
+	content: "\e0f2";
+}
+.icomoon-link:before {
+	content: "\e0f3";
+}
+.icomoon-bell:before {
+	content: "\e0f4";
+}
+.icomoon-printer:before {
+	content: "\e0f5";
+}
+.icomoon-flashlight:before {
+	content: "\e0f6";
+}
+.icomoon-search:before {
+	content: "\e0f7";
+}
+.icomoon-popup:before {
+	content: "\e0f8";
+}
+.icomoon-house:before {
+	content: "\e0f9";
+}
+.icomoon-quote:before {
+	content: "\e0fa";
+}
+.icomoon-comment:before {
+	content: "\e0fb";
+}
+.icomoon-chat:before {
+	content: "\e0fc";
+}
+.icomoon-thumbs-down:before {
+	content: "\e0fd";
+}
+.icomoon-thumbs-up:before {
+	content: "\e0fe";
+}
+.icomoon-star:before {
+	content: "\e0ff";
+}
+.icomoon-star-2:before {
+	content: "\e100";
+}
+.icomoon-heart:before {
+	content: "\e101";
+}
+.icomoon-heart-2:before {
+	content: "\e102";
+}
+.icomoon-sharable:before {
+	content: "\e103";
+}
+.icomoon-share:before {
+	content: "\e104";
+}
+.icomoon-target:before {
+	content: "\e105";
+}
+.icomoon-location:before {
+	content: "\e106";
+}
+.icomoon-compass:before {
+	content: "\e107";
+}
+.icomoon-map:before {
+	content: "\e108";
+}
+.icomoon-location-2:before {
+	content: "\e109";
+}
+.icomoon-export:before {
+	content: "\e10a";
+}
+.icomoon-vcard:before {
+	content: "\e10b";
+}
+.icomoon-user-add:before {
+	content: "\e10c";
+}
+.icomoon-users:before {
+	content: "\e10d";
+}
+.icomoon-user:before {
+	content: "\e10e";
+}
+.icomoon-forward:before {
+	content: "\e10f";
+}
+.icomoon-reply-all:before {
+	content: "\e110";
+}
+.icomoon-reply:before {
+	content: "\e111";
+}
+.icomoon-drawer:before {
+	content: "\e112";
+}
+.icomoon-paperclip:before {
+	content: "\e113";
+}
+.icomoon-feather:before {
+	content: "\e114";
+}
+.icomoon-pencil:before {
+	content: "\e115";
+}
+.icomoon-paperplane:before {
+	content: "\e116";
+}
+.icomoon-mail:before {
+	content: "\e117";
+}
+.icomoon-directions:before {
+	content: "\e118";
+}
+.icomoon-mouse:before {
+	content: "\e119";
+}
+.icomoon-mobile:before {
+	content: "\e11a";
+}

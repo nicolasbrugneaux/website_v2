@@ -1,4 +1,30 @@
 div.footer
 	div.container
-		| Angular seed app: v
-		span(app-version)
+		div.col-lg-12
+			div.row
+				div.col-lg-12
+					div.col-lg-2
+						ul.list-unstyled
+							li
+								| Navigation
+							li(ng-repeat='item in data.links.navigation' ng-class="{ active: item.link==data.location.path()}")
+								a.navigation(href='{{ item.link }}')
+									| {{ item.name }}
+					div.col-lg-2
+						ul.list-unstyled
+							li
+								| Social
+							li(ng-repeat='item in data.links.social')
+								a.social(href='{{ item.link }}' target="_blank" class='social-{{ item.class }}')
+									| {{ item.name }}
+			hr
+			div.row
+				div.col-lg-12
+					p.pull-left.text-muted
+						| Created in {{ data.info.date_creation | date: 'MMMM yyyy' }} by 
+						a(href='/about/')
+							| {{ data.info.author }}
+					p.pull-right
+						a.btn.btn-default.btn-success(target="_blank" href="{{ data.info.repository }}")
+							| Browser the source code on 
+							span.icomoon-github-2

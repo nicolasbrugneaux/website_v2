@@ -6,16 +6,41 @@
 
   var myApp;
 
-  myApp = angular.module('myApp', ['myApp.controllers', 'myApp.filters', 'myApp.services', 'myApp.directives']);
+  myApp = angular.module('myApp', ['ngProgress', 'myApp.controllers', 'myApp.filters', 'myApp.services', 'myApp.directives']);
+
+  myApp.factory('sharedProperties', function($rootScope) {
+    var list, sharedProperties;
+    sharedProperties = {};
+    list = {};
+    sharedProperties.get = function(name) {
+      return list[name];
+    };
+    sharedProperties.set = function(name, value) {
+      list[name] = value;
+      return $rootScope.$broadcast(name.concat('Event'), list);
+    };
+    sharedProperties.all = function() {
+      return list;
+    };
+    return sharedProperties;
+  });
 
   myApp.config(function($routeProvider, $locationProvider) {
-    $routeProvider.when('/view1', {
-      templateUrl: 'partials/partial1',
-      controller: 'MyCtrl1'
+    $routeProvider.when('/', {
+      templateUrl: 'partials/home',
+      controller: 'HomeCtrl'
     });
-    $routeProvider.when('/view2', {
-      templateUrl: 'partials/partial2',
-      ontroller: 'MyCtrl2'
+    $routeProvider.when('/about', {
+      templateUrl: 'partials/about',
+      controller: 'AboutCtrl'
+    });
+    $routeProvider.when('/skills', {
+      templateUrl: 'partials/skills',
+      controller: 'SkillsCtrl'
+    });
+    $routeProvider.when('/contact', {
+      templateUrl: 'partials/contact',
+      controller: 'ContactCtrl'
     });
     $routeProvider.otherwise({
       redirectTo: '/'

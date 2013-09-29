@@ -1,15 +1,9 @@
 extends layout
 
 block body
-	div(ng-controller='AppCtrl').container
-		h2 Hello {{name}}
-		ul.menu
-			li
-				a(href='view1') view1
-			li
-				a(href='view2') view2
-
-		div(ng-view)
+	div.main-content(ng-controller='AppCtrl')
+		div.container
+			div(ng-view)
 
 block scripts
 	// Les Scripts
@@ -17,6 +11,7 @@ block scripts
 	script(src='scripts/lib/vendor/jquery/jquery-1.10.2.js')
 	script(src='scripts/lib/vendor/bootstrap/bootstrap.js')
 	script(src='scripts/lib/vendor/angular/angular.js')
+	script(src='scripts/lib/vendor/ngProgress/ngProgress.js')
 	script(src='scripts/app.js')
 	script(src='scripts/services.js')
 	script(src='scripts/controllers.js')

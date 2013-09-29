@@ -6,10 +6,13 @@ html(ng-app="myApp")
 		title nicolasbrugneaux.me
 		// Le style
 		link(rel='stylesheet', href='stylesheets/style.css')
-	body
+	body(ng-controller="MainCtrl")
 		block nav
 			include nav
+		block notifications
+			include notifications
 		block body
+		hr
 		block footer
 			include footer
 		block scripts
