@@ -56,6 +56,11 @@
 
   app.get('/partials/:name', routes.partials);
 
+  app.post('/contact', function(req, res) {
+    console.log(req.body.mail);
+    return res.redirect('/contact');
+  });
+
   app.get('/api/name', api.name);
 
   app.get('*', routes.index);

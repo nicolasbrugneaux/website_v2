@@ -1,0 +1,20 @@
+.contact {
+	.contact-details {
+		@media (min-width: @screen-sm-min) {
+		  dl {
+		    margin-left: -130px;
+		  }
+		}
+		.social-icons {
+			a {
+				span {
+					font-size: 3em;
+				}
+				&:hover {
+					color: darken(@brand-success, 8%);
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}

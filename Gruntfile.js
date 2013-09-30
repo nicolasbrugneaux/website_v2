@@ -15,6 +15,8 @@ module.exports = function(grunt) {
 					'./app/static/scripts/filters.js': ['./app/static/scripts/coffee/filters.coffee'],
 					'./app/static/scripts/services.js': ['./app/static/scripts/coffee/services.coffee'],
 
+					'./app/static/scripts/jquery.js': ['./app/static/scripts/coffee/jquery.coffee'],
+
 					// node scripts
 					'./app/app.js': ['./app/coffee/app.coffee'],
 
@@ -45,8 +47,8 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			files: [
-				'./app/static/stylesheets/less/*',
-				'./app/static/stylesheets/less/vendor/bootstrap/*',
+				'./app/static/stylesheets/less/*.less',
+				'./app/static/stylesheets/less/vendor/bootstrap/*.less',
 				'./app/static/scripts/coffee/*',
 				'./app/coffee/*',
 				'./app/routes/coffee/*'

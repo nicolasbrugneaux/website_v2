@@ -42,6 +42,10 @@ if app.get('env') is 'production'
 # serve index and view partials
 app.get('/', routes.index)
 app.get('/partials/:name', routes.partials)
+app.post('/contact', (req, res) ->
+	console.log req.body.mail
+	res.redirect('/contact')
+)
 
 # JSON API
 app.get('/api/name', api.name)
