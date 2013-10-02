@@ -1,6 +1,6 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "website_v2",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
     "express": "3.4",
@@ -8,9 +8,10 @@
     "grunt": "0.4.1"
   },
   "devDependencies": {
-    "grunt-contrib": "~0.7.0",
-    "grunt-contrib-less": "~0.7.0",
-    "grunt-contrib-coffee": "~0.7.0",
-    "grunt-contrib-watch": "~0.7.0",
+    "grunt-contrib": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-uglify": "latest"
   }
 }

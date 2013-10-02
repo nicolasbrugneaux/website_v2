@@ -1,10 +1,59 @@
 (function() {
   'use strict';
   /*
-  	@Controllers
+  	@app: Declare app level module which depends on filters, and services
   */
 
   var myApp;
+
+  myApp = angular.module('myApp', ['ngProgress', 'myApp.controllers', 'myApp.filters', 'myApp.services', 'myApp.directives']);
+
+  myApp.factory('sharedProperties', function($rootScope) {
+    var list, sharedProperties;
+    sharedProperties = {};
+    list = {};
+    sharedProperties.get = function(name) {
+      return list[name];
+    };
+    sharedProperties.set = function(name, value) {
+      list[name] = value;
+      return $rootScope.$broadcast(name.concat('Event'), list);
+    };
+    sharedProperties.all = function() {
+      return list;
+    };
+    return sharedProperties;
+  });
+
+  myApp.config(function($routeProvider, $locationProvider) {
+    $routeProvider.when('/', {
+      templateUrl: 'partials/home',
+      controller: 'HomeCtrl'
+    });
+    $routeProvider.when('/about', {
+      templateUrl: 'partials/about',
+      controller: 'AboutCtrl'
+    });
+    $routeProvider.when('/skills', {
+      templateUrl: 'partials/skills',
+      controller: 'SkillsCtrl'
+    });
+    $routeProvider.when('/contact', {
+      templateUrl: 'partials/contact',
+      controller: 'ContactCtrl'
+    });
+    $routeProvider.otherwise({
+      redirectTo: '/'
+    });
+    return $locationProvider.html5Mode(true);
+  });
+
+  'use strict';
+
+  /*
+  	@Controllers
+  */
+
 
   myApp = angular.module('myApp.controllers', []);
 
@@ -117,5 +166,46 @@
       }, 500);
     }
   ]);
+
+  'use strict';
+
+  /*
+  	@Directives
+  */
+
+
+  myApp = angular.module('myApp.directives', []);
+
+  myApp.directive('appVersion', function(version) {
+    return function(scope, elm, attrs) {
+      return elm.text(version);
+    };
+  });
+
+  'use strict';
+
+  /*
+  	@Filters
+  */
+
+
+  myApp = angular.module('myApp.filters', []);
+
+  myApp.filter('interpolate', function(version) {
+    return function(text) {
+      return String(text).replace(/\%VERSION\%/mg, version);
+    };
+  });
+
+  'use strict';
+
+  /*
+  	@Services
+  */
+
+
+  myApp = angular.module('myApp.services', []);
+
+  myApp.value('version', '0.1');
 
 }).call(this);

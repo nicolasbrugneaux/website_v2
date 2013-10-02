@@ -13,54 +13,6 @@ myApp.controller('AppCtrl',
 	]
 )
 
-myApp.controller('HomeCtrl',
-	[ '$scope', '$rootScope', 'sharedProperties', '$location', 'progressbar',
-	($scope, $rootScope, sharedProperties, $location, progress) ->
-		progress.start()
-		$scope.data.location = $location
-		$(".has-tooltip").tooltip()
-		setTimeout( () ->
-			progress.complete()
-		, 500)
-	]
-)
-
-myApp.controller('AboutCtrl', 
-	[ '$scope', '$rootScope', 'sharedProperties', '$location', 'progressbar',
-	($scope, $rootScope, sharedProperties, $location, progress) ->
-		progress.start()
-		$scope.data.location = $location
-		setTimeout( () ->
-			$(".has-tooltip").tooltip()
-			progress.complete()
-		, 500)
-	]
-)
-
-myApp.controller('SkillsCtrl', 
-	[ '$scope', '$rootScope', 'sharedProperties', '$location', 'progressbar',
-	($scope, $rootScope, sharedProperties, $location, progress) ->
-		progress.start()
-		$scope.data.location = $location
-		setTimeout( () ->
-			$(".has-tooltip").tooltip()
-			progress.complete()
-		, 500)
-	]
-)
-
-myApp.controller('ContactCtrl', 
-	[ '$scope', '$rootScope', 'sharedProperties', '$location', 'progressbar',
-	($scope, $rootScope, sharedProperties, $location, progress) ->
-		progress.start()
-		$scope.data.location = $location
-		setTimeout( () ->
-			$(".has-tooltip").tooltip()
-			progress.complete()
-		, 500)
-	]
-)
-
 myApp.controller('MainCtrl', 
 	[ '$scope', '$rootScope', 'sharedProperties','$location', 'progressbar',
 	($scope, $rootScope, sharedProperties, $location, progress) ->

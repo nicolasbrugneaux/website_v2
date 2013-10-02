@@ -3,25 +3,50 @@ module.exports = function(grunt) {
 
 	// Project configuration.
 	grunt.initConfig({
+		pkg: grunt.file.readJSON('package.json'),
 		coffee: {
-			compile: {
+			development: {
+				options: {
+					join: true
+				},
 				files: {
 					// 1:1 compile
 
-					// angular scripts
+					// angular js
 					'./app/static/scripts/app.js': ['./app/static/scripts/coffee/app.coffee'],
-					'./app/static/scripts/controllers.js': ['./app/static/scripts/coffee/controllers.coffee'],
+					'./app/static/scripts/controllers.js': [
+						'./app/static/scripts/coffee/controllers/main.coffee',
+						'./app/static/scripts/coffee/controllers/home.coffee',
+						'./app/static/scripts/coffee/controllers/about.coffee',
+						'./app/static/scripts/coffee/controllers/skills.coffee',
+						'./app/static/scripts/coffee/controllers/contact.coffee'
+					],
 					'./app/static/scripts/directives.js': ['./app/static/scripts/coffee/directives.coffee'],
 					'./app/static/scripts/filters.js': ['./app/static/scripts/coffee/filters.coffee'],
-					'./app/static/scripts/services.js': ['./app/static/scripts/coffee/services.coffee'],
+					'./app/static/scripts/services.js': ['./app/static/scripts/coffee/services.coffee']
+				}
+				
+			},
+			production: {
+				options: {
+					join: true
+				},
+				files: {
+					'./app/static/scripts/scripts.js': [
 
-					'./app/static/scripts/jquery.js': ['./app/static/scripts/coffee/jquery.coffee'],
+						'./app/static/scripts/coffee/app.coffee',
 
-					// node scripts
-					'./app/app.js': ['./app/coffee/app.coffee'],
+							'./app/static/scripts/coffee/controllers/main.coffee',
+							'./app/static/scripts/coffee/controllers/home.coffee',
+							'./app/static/scripts/coffee/controllers/about.coffee',
+							'./app/static/scripts/coffee/controllers/skills.coffee',
+							'./app/static/scripts/coffee/controllers/contact.coffee',
 
-					'./app/routes/index.js': ['./app/routes/coffee/index.coffee'],
-					'./app/routes/api.js': ['./app/routes/coffee/api.coffee']
+						'./app/static/scripts/coffee/directives.coffee',
+						'./app/static/scripts/coffee/filters.coffee',
+						'./app/static/scripts/coffee/services.coffee'
+
+					]
 				}
 			}
 		},
@@ -34,33 +59,64 @@ module.exports = function(grunt) {
 				files: {
 					'./app/static/stylesheets/style.css': './app/static/stylesheets/less/style.less'
 				}
-			}/*,
+			},
 			production: {
 				options: {
-					paths: ['.app/static/stylesheets/less'],
+					banner: '/*!\n<%= pkg.name %> - v<%= pkg.version %>\n' +
+						'@nicolasbrugneaux.me - style.min.css\n' +
+        				'<%= grunt.template.today("yyyy-mm-dd") %>\n*/\n',
+					paths: ['./app/static/stylesheets/less'],
 					yuicompress: true
 				},
 				files: {
 					'./app/static/stylesheets/style.min.css': './app/static/stylesheets/less/style.less'
 				}
-			}*/
+			}
+		},
+		uglify: {
+			options: {
+				banner: '/*!\n<%= pkg.name %> - v<%= pkg.version %>\n' +
+						'@nicolasbrugneaux.me - scripts.min.js\n' +
+        				'<%= grunt.template.today("yyyy-mm-dd") %>\n*/\n',
+				mangle: false,
+				sourceMap: './app/static/scripts/scripts.min.map'
+			},
+			scripts_min: {
+				files: {
+					'./app/static/scripts/scripts.min.js': ['./app/static/scripts/scripts.js']
+				}
+			}
 		},
 		watch: {
-			files: [
-				'./app/static/stylesheets/less/*.less',
-				'./app/static/stylesheets/less/vendor/bootstrap/*.less',
-				'./app/static/scripts/coffee/*',
-				'./app/coffee/*',
-				'./app/routes/coffee/*'
-			],
-			tasks: ['less', 'coffee']
+			development: {
+				files: [
+					'./app/static/stylesheets/less/*.less',
+					'./app/static/stylesheets/less/vendor/bootstrap/*.less',
+					'./app/static/scripts/coffee/*.coffee',
+					'./app/static/scripts/coffee/controllers/*.coffee'
+				],
+				tasks: ['less:development', 'coffee:development']
+			},
+			production: {
+				files: [
+					'./app/static/stylesheets/less/*.less',
+					'./app/static/stylesheets/less/bootstrap/*.less',
+					'./app/static/scripts/coffee/*.coffee',
+					'./app/static/scripts/coffee/controllers/*.coffee',
+					'./app/static/scripts/scripts.min.js'
+				],
+				tasks: ['less:production', 'coffee:production', 'uglify']
+			}
 		}
 	});
 
     grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
 	// Default task.
-	grunt.registerTask('default', 'watch');
+	grunt.registerTask('default', 'watch:development');
+	grunt.registerTask('dev',['less:development', 'coffee:development']);
+	grunt.registerTask('prod',['less:production', 'coffee:production', 'uglify']);
 };
