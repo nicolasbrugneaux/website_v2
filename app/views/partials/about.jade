@@ -1,4 +1,103 @@
-p ABOUT
-p
-  | Showing of 'interpolate' filter:
-  | {{ 'Current version is v%VERSION%.' | interpolate }}
+div.home
+	div.row
+		div.col-lg-12.section-header
+			h1 About me ...
+			img.pull-right.img-circle.visible-desktop(width="140px" height="140px" src="{{ data.info.photo }}")
+			p
+				| My name is 
+				a(href="/about") {{ data.info.name }}
+				| and I am a 20 years old French guy.
+			p
+				| I am 
+				b passionate 
+				|and 
+				b perseverant 
+				| . I love traveling.
+				br
+				br
+				br
+				blockquote
+					p.text-muted
+						i A person who never made a mistake never tried anything new.
+					small Albert Einstein
+	hr
+
+	div.row
+		div.col-lg-12
+			div.col-lg-6
+				h2 Education
+				ul
+					li 
+						| I will be graduated from 
+						a(href="http://wwww.viauc.dk") VIA University College
+						| , Denmark in January, 2014 with a Bachelor Degree of ICT Engineering.	
+					li
+						| I am currently graduated with a DUT Informatique from 
+						a(href="http://iutrs.unistra.fr") IUT Robert Schuman
+						| , France
+					li
+						| And also graduated with a Baccalauréat Scientifique from 
+						a(href="http://www.lycee-leclerc.fr") Lycée Leclerc
+						|, France.
+
+			div.col-lg-6
+				h2 Work
+				ul
+					li
+						p 
+							| I am currently working for 
+							a(href="http://www.orange.com") Orange Business 
+							| as an intern in Sophia-Antipolis, France. I'm mostly re-writing an old VB application into a responsive website using:
+							br
+							code
+								| Python - 
+								i Flask
+								br
+								| HTML5, CSS3 - 
+								i { Less }
+								br
+								| Javascript - 
+								i AngularJS - Coffeescript
+					li
+						| From July to August 2011, I worked as a cashier at 
+						a(href="http://societegenerale.fr") Société Générale 
+						| in Strasbourg, France.
+	hr
+
+	div.row
+		div.col-lg-12
+			div.col-lg-6
+				h2 Personal achievements
+				ul
+					li
+						| System Engineering Quiz #1 - 
+						a(href="http://sysengquiz.tumblr.com/halloffame") Hall of Fame
+					li
+						| System Engineering Quiz #2 - 
+						a(href="http://sysengquiz2.tumblr.com/halloffame") Hall of Fame
+					li
+						| Web Dev Quiz #1 - 
+						a(href="http://webdevquiz.rimann.org/hall-of-fame.php") Hall of Fame
+			div.col-lg-6
+				h2 Skills
+				p I am a software developer. I love discovering new things, tweaking existing things and I'm charmed by everything around web development.
+				a.btn.btn-default.btn-success(href="/skills") See details »
+	hr
+
+	div.row
+		div.col-lg-12
+			div.col-lg-6
+				h2 Interests &amp; Hobbies
+				ul.list-unstyled
+					li
+						strong Sports
+						br
+						| Judo, Mountain Bike, Alpine skiing, Running, Swimming.
+					li
+						strong Culture
+						br
+						| Cinema, Music, Reading, Video Games, Design.
+					li
+						strong More information
+						br
+						| Owns driver license, Loves travelling, Enthusiastic.

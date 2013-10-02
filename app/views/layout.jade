@@ -7,12 +7,12 @@ html(ng-app="myApp")
 		// Le style
 		link(rel='stylesheet', href='stylesheets/style.css')
 	body(ng-controller="MainCtrl" ng-init="init()")
-		block nav
-			include nav
 		block notifications
 			include notifications
 		block body
 		hr
 		block footer
 			include footer
+		block nav
+			include nav
 		block scripts

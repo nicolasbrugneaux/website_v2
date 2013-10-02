@@ -32,27 +32,28 @@ myApp.controller('MainCtrl',
 				name: "nicolasbrugneaux.me"
 				phone: '+336 42 24 38 46'
 				skype: 'nicolas.brugneaux'
+				photo: 'https://graph.facebook.com/nicolas.brugneaux/picture?width=140&height=140'
 			links:
 				social: [
 					{
 						name: "Twitter"
 						link: "https://twitter.com/nbrugneaux"
-						class: "twitter-2"
+						class: "twitter"
 					}
 					{
 						name: "Github"
 						link: "https://github.com/nicolasbrugneaux"
-						class: "github-5"
+						class: "github"
 					}
 					{
 						name: "Facebook"
 						link: "https://facebook.com/nicolas.brugneaux"
-						class: "facebook-2"
+						class: "facebook"
 					}
 					{
-						name: "Google +"
+						name: "Google+"
 						link: "https://plus.google.com/113934921579560371005"
-						class: "google-plus-4"
+						class: "google-plus"
 					}
 					{
 						name: "LinkedIn"

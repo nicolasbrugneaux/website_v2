@@ -1,25 +1,19 @@
 //- block comment
-header
-	div.container.navigation
-		div.col-lg-12
-			ul.nav.nav-pills.pull-right
-				li(ng-repeat="item in data.links.navigation" ng-class="{ active: item.link==data.location.path()}")
-					a(href="{{ item.link }}") {{ item.name }}
-			a.navbar-brand(href="/") {{ data.info.name }}
-	//-div.navigation
-		div.navbar.navbar-default.navbar-static-top
-			div.container
-				div.navbar-header
-					button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
-						span.icon-bar
-						span.icon-bar
-						span.icon-bar
-					a.navbar-brand(href="#") {{ data.info.name }}
-				div.navbar-collapse.collapse.navbar-responsive-collapse
-					ul.nav.navbar-nav
-						li(ng-repeat="item in data.links.navigation" ng-class="{ active: item.link==data.location.path()}")
-							a(href="{{ item.link }}") {{ item.name }}
-					// /.nav-bar
-				// /.nav-collapse
-			// /.container
-	// /.navigation
+	header
+		div.container.navigation
+			div.col-lg-12
+				ul.nav.nav-pills.pull-right
+					li(ng-repeat="item in data.links.navigation" ng-class="{ active: item.link==data.location.path()}")
+						a(href="{{ item.link }}") {{ item.name }}
+				a.navbar-brand(href="/") {{ data.info.name }}
+		// /.navigation
+nav#bt-menu.bt-menu.bt-menu-close
+	a(href="#").bt-menu-trigger
+		span Menu
+	ul
+		li(ng-repeat="item in data.links.navigation" ng-class="{ active: item.link==data.location.path()}")
+			a(href="{{ item.link }}") {{ item.name }}
+	ul
+		li(ng-repeat="item in data.links.social")
+			a.btn-icon.has-tooltip(target="_blank" href="{{ item.link }}" class="icomoon-{{ item.class }}"
+				data-toggle="tooltip" data-placement="top" title="{{ item.name }}" data-original-title="{{ item.name }}")
