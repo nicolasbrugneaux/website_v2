@@ -17,10 +17,8 @@ myApp.controller('MainCtrl',
 	[ '$scope', '$rootScope', 'sharedProperties','$location', 'progressbar',
 	($scope, $rootScope, sharedProperties, $location, progress) ->
 		$scope.init = () ->
-			if $(".notifications").children().size() == 1
-				$(".notifications").hide()
-			else 
-				$(".notifications").slideUp(0).slideDown(150).delay(5000).slideUp(150)
+			slide_notifications()
+			create_dynamic_menu()
 
 		$scope.data =
 			location: $location
@@ -81,3 +79,38 @@ myApp.controller('MainCtrl',
 				]
 	]
 )
+
+create_dynamic_menu = () ->
+	menu = $( '#bt-menu' )
+	trigger = $( '#bt-menu a.bt-menu-trigger' )
+	overlay = $('<div>').addClass('bt-overlay')
+	menu_links = $('#bt-menu ul.nav-menu')
+	menu.append( overlay )
+	resetMenu = () ->
+			$('#bt-menu').removeClass('bt-menu-open')
+			$('#bt-menu').addClass( 'bt-menu-close' )
+	closeClickFn = ( ev ) ->
+		resetMenu()
+		overlay.off( 'click', closeClickFn )
+
+
+	trigger.on( 'click', ( ev ) =>
+		ev.stopPropagation()
+		ev.preventDefault()
+		
+		if( $('#bt-menu').hasClass( 'bt-menu-open' ) )
+			resetMenu()
+
+		else
+			$('#bt-menu').removeClass( 'bt-menu-close' )
+			$('#bt-menu').addClass( 'bt-menu-open' )
+			overlay.on( 'click', closeClickFn )
+			menu_links.on( 'click', 'li', closeClickFn )
+
+	)
+
+slide_notifications = () ->
+	if $(".notifications").children().size() == 1
+		$(".notifications").hide()
+	else 
+		$(".notifications").slideUp(0).slideDown(150).delay(5000).slideUp(150)

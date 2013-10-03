@@ -4,7 +4,7 @@
   	@Controllers
   */
 
-  var myApp;
+  var create_dynamic_menu, myApp, slide_notifications;
 
   myApp = angular.module('myApp.controllers', []);
 
@@ -13,11 +13,8 @@
   myApp.controller('MainCtrl', [
     '$scope', '$rootScope', 'sharedProperties', '$location', 'progressbar', function($scope, $rootScope, sharedProperties, $location, progress) {
       $scope.init = function() {
-        if ($(".notifications").children().size() === 1) {
-          return $(".notifications").hide();
-        } else {
-          return $(".notifications").slideUp(0).slideDown(150).delay(5000).slideUp(150);
-        }
+        slide_notifications();
+        return create_dynamic_menu();
       };
       return $scope.data = {
         location: $location,
@@ -74,6 +71,44 @@
       };
     }
   ]);
+
+  create_dynamic_menu = function() {
+    var closeClickFn, menu, menu_links, overlay, resetMenu, trigger,
+      _this = this;
+    menu = $('#bt-menu');
+    trigger = $('#bt-menu a.bt-menu-trigger');
+    overlay = $('<div>').addClass('bt-overlay');
+    menu_links = $('#bt-menu ul.nav-menu');
+    menu.append(overlay);
+    resetMenu = function() {
+      $('#bt-menu').removeClass('bt-menu-open');
+      return $('#bt-menu').addClass('bt-menu-close');
+    };
+    closeClickFn = function(ev) {
+      resetMenu();
+      return overlay.off('click', closeClickFn);
+    };
+    return trigger.on('click', function(ev) {
+      ev.stopPropagation();
+      ev.preventDefault();
+      if ($('#bt-menu').hasClass('bt-menu-open')) {
+        return resetMenu();
+      } else {
+        $('#bt-menu').removeClass('bt-menu-close');
+        $('#bt-menu').addClass('bt-menu-open');
+        overlay.on('click', closeClickFn);
+        return menu_links.on('click', 'li', closeClickFn);
+      }
+    });
+  };
+
+  slide_notifications = function() {
+    if ($(".notifications").children().size() === 1) {
+      return $(".notifications").hide();
+    } else {
+      return $(".notifications").slideUp(0).slideDown(150).delay(5000).slideUp(150);
+    }
+  };
 
   myApp.controller('HomeCtrl', [
     '$scope', '$rootScope', 'sharedProperties', '$location', 'progressbar', function($scope, $rootScope, sharedProperties, $location, progress) {

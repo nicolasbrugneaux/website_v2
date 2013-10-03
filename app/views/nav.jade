@@ -10,10 +10,10 @@
 nav#bt-menu.bt-menu.bt-menu-close
 	a(href="#").bt-menu-trigger
 		span Menu
-	ul
+	ul.nav-menu
 		li(ng-repeat="item in data.links.navigation" ng-class="{ active: item.link==data.location.path()}")
 			a(href="{{ item.link }}") {{ item.name }}
-	ul
+	ul.social-menu
 		li(ng-repeat="item in data.links.social")
 			a.btn-icon.has-tooltip(target="_blank" href="{{ item.link }}" class="icomoon-{{ item.class }}"
 				data-toggle="tooltip" data-placement="top" title="{{ item.name }}" data-original-title="{{ item.name }}")

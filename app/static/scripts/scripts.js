@@ -4,7 +4,7 @@
   	@app: Declare app level module which depends on filters, and services
   */
 
-  var myApp;
+  var create_dynamic_menu, myApp, slide_notifications;
 
   myApp = angular.module('myApp', ['ngProgress', 'myApp.controllers', 'myApp.filters', 'myApp.services', 'myApp.directives']);
 
@@ -62,11 +62,8 @@
   myApp.controller('MainCtrl', [
     '$scope', '$rootScope', 'sharedProperties', '$location', 'progressbar', function($scope, $rootScope, sharedProperties, $location, progress) {
       $scope.init = function() {
-        if ($(".notifications").children().size() === 1) {
-          return $(".notifications").hide();
-        } else {
-          return $(".notifications").slideUp(0).slideDown(150).delay(5000).slideUp(150);
-        }
+        slide_notifications();
+        return create_dynamic_menu();
       };
       return $scope.data = {
         location: $location,
@@ -77,26 +74,27 @@
           repository: "https://github.com/nicolasbrugneaux/website_v2",
           name: "nicolasbrugneaux.me",
           phone: '+336 42 24 38 46',
-          skype: 'nicolas.brugneaux'
+          skype: 'nicolas.brugneaux',
+          photo: 'https://graph.facebook.com/nicolas.brugneaux/picture?width=140&height=140'
         },
         links: {
           social: [
             {
               name: "Twitter",
               link: "https://twitter.com/nbrugneaux",
-              "class": "twitter-2"
+              "class": "twitter"
             }, {
               name: "Github",
               link: "https://github.com/nicolasbrugneaux",
-              "class": "github-5"
+              "class": "github"
             }, {
               name: "Facebook",
               link: "https://facebook.com/nicolas.brugneaux",
-              "class": "facebook-2"
+              "class": "facebook"
             }, {
-              name: "Google +",
+              name: "Google+",
               link: "https://plus.google.com/113934921579560371005",
-              "class": "google-plus-4"
+              "class": "google-plus"
             }, {
               name: "LinkedIn",
               link: "http://www.linkedin.com/profile/view?id=267950653",
@@ -123,12 +121,50 @@
     }
   ]);
 
+  create_dynamic_menu = function() {
+    var closeClickFn, menu, menu_links, overlay, resetMenu, trigger,
+      _this = this;
+    menu = $('#bt-menu');
+    trigger = $('#bt-menu a.bt-menu-trigger');
+    overlay = $('<div>').addClass('bt-overlay');
+    menu_links = $('#bt-menu ul.nav-menu');
+    menu.append(overlay);
+    resetMenu = function() {
+      $('#bt-menu').removeClass('bt-menu-open');
+      return $('#bt-menu').addClass('bt-menu-close');
+    };
+    closeClickFn = function(ev) {
+      resetMenu();
+      return overlay.off('click', closeClickFn);
+    };
+    return trigger.on('click', function(ev) {
+      ev.stopPropagation();
+      ev.preventDefault();
+      if ($('#bt-menu').hasClass('bt-menu-open')) {
+        return resetMenu();
+      } else {
+        $('#bt-menu').removeClass('bt-menu-close');
+        $('#bt-menu').addClass('bt-menu-open');
+        overlay.on('click', closeClickFn);
+        return menu_links.on('click', 'li', closeClickFn);
+      }
+    });
+  };
+
+  slide_notifications = function() {
+    if ($(".notifications").children().size() === 1) {
+      return $(".notifications").hide();
+    } else {
+      return $(".notifications").slideUp(0).slideDown(150).delay(5000).slideUp(150);
+    }
+  };
+
   myApp.controller('HomeCtrl', [
     '$scope', '$rootScope', 'sharedProperties', '$location', 'progressbar', function($scope, $rootScope, sharedProperties, $location, progress) {
       progress.start();
       $scope.data.location = $location;
-      $(".has-tooltip").tooltip();
       return setTimeout(function() {
+        $(".has-tooltip").tooltip();
         return progress.complete();
       }, 500);
     }
