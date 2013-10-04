@@ -212,8 +212,13 @@
 			transition-delay: 0.4s;
 }
 .bt-menu.bt-menu-open ul:nth-of-type(2) li:nth-child(5) {
+	
 	-webkit-transition-delay: 0.5s;
 			transition-delay: 0.5s;
+}
+.bt-menu.bt-menu-open ul:nth-of-type(2) li:nth-child(6) {
+	-webkit-transition-delay: 0.6s;
+			transition-delay: 0.6s;
 }
 
 .bt-menu.bt-menu-open ul:nth-of-type(2) li {
@@ -227,14 +232,19 @@
 	text-decoration: none;
 }
 
-.bt-menu ul:first-of-type li a {
-	padding: 0 20px;
-	color: #fff;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-size: 1em;
-	-webkit-transition: color 0.2s;
-	        transition: color 0.2s;
+.bt-menu ul:first-of-type li {
+	a {
+		padding: 0 20px;
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-size: 1em;
+		-webkit-transition: color 0.2s;
+		        transition: color 0.2s;
+	}
+	&.active a {
+		color: @brand-success;
+	}
 }
 
 .bt-menu ul:nth-of-type(2) li a {

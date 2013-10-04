@@ -11,6 +11,7 @@ routes = require('./routes')
 api = require('./routes/api')
 
 
+
 app = module.exports = express()
 
 ###
@@ -25,6 +26,7 @@ app.use(express.logger('dev'))
 app.use(express.bodyParser())
 app.use(express.methodOverride())
 app.use(express.static(path.join(__dirname, 'static')))
+app.use('/static/public', express.static(__dirname, 'public'))
 app.use(app.router)
 
 # development only
@@ -42,8 +44,8 @@ if app.get('env') is 'production'
 # serve index and view partials
 app.get('/', routes.index)
 app.get('/partials/:name', routes.partials)
-app.post('/contact', (req, res) ->
-	console.log req.body.mail
+app.post('/contact', (request, response) ->
+	console.log request.body.mail
 	res.redirect('/contact')
 )
 

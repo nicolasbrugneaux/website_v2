@@ -37,6 +37,8 @@
 
   app.use(express["static"](path.join(__dirname, 'static')));
 
+  app.use('/static/public', express["static"](__dirname, 'public'));
+
   app.use(app.router);
 
   if (app.get('env') === 'development') {
@@ -56,8 +58,8 @@
 
   app.get('/partials/:name', routes.partials);
 
-  app.post('/contact', function(req, res) {
-    console.log(req.body.mail);
+  app.post('/contact', function(request, response) {
+    console.log(request.body.mail);
     return res.redirect('/contact');
   });
 
