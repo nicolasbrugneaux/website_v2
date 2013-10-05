@@ -1,0 +1,43 @@
+mixin article(article)
+	div.col-lg-12
+		h3 
+			a(href="/admin/article/edit/#{article._id}") #{article.title}
+			small 
+				em - #{article.created_at}
+		div.tags
+			if article.tags != undefined
+				for tag in article.tags
+					span.label.label-info(style="margin-right:2px;") #{tag}
+		br
+		p #{article.body.substr(0, 250) + '...'}
+		br
+		p
+			a(class="btn btn-default btn-sm btn-info",href="/admin/article/edit/#{article._id}") EDIT &nbsp;&nbsp;
+				span.icomoon-blog
+			a(class="btn btn-default btn-sm btn-danger",href="/admin/article/delete/#{article._id}") DELETE &nbsp;&nbsp;
+				span.icomoon-close
+		hr
+
+
+
+include ../head
+
+block body
+	div(ng-controller='AppCtrl')
+		div.container
+			div.jumbotron
+				h1= title
+			div(ng-view)
+				div
+					a(class="btn btn-default btn-sm btn-success", href="/admin/article/add") NEW &nbsp;&nbsp;
+						span.icomoon-quill
+				div
+					- each article in articles
+						div.row
+							mixin article(article)
+block scripts
+
+	script(src='scripts/lib/vendor/jquery/jquery-1.10.2.js')
+	script(src='scripts/lib/vendor/bootstrap/bootstrap.js')
+
+

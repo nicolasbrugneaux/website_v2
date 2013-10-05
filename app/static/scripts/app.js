@@ -6,7 +6,7 @@
 
   var myApp;
 
-  myApp = angular.module('myApp', ['ngProgress', 'myApp.controllers', 'myApp.filters', 'myApp.services', 'myApp.directives']);
+  myApp = angular.module('myApp', ['ngProgress', 'ngSanitize', 'myApp.controllers', 'myApp.filters', 'myApp.services', 'myApp.directives']);
 
   myApp.factory('sharedProperties', function($rootScope) {
     var list, sharedProperties;
@@ -41,6 +41,10 @@
     $routeProvider.when('/contact', {
       templateUrl: 'partials/contact',
       controller: 'ContactCtrl'
+    });
+    $routeProvider.when('/blog', {
+      templateUrl: 'partials/blog',
+      controller: 'BlogCtrl'
     });
     $routeProvider.otherwise({
       redirectTo: '/'

@@ -6,11 +6,7 @@
 express = require('express')
 http = require('http')
 path = require('path')
-
-routes = require('./routes')
-api = require('./routes/api')
-
-
+routes = require('./routes/routes')
 
 app = module.exports = express()
 
@@ -25,18 +21,23 @@ app.set('view engine', 'jade')
 app.use(express.logger('dev'))
 app.use(express.bodyParser())
 app.use(express.methodOverride())
+app.use(express.cookieParser())
+MemStore = express.session.MemoryStore
+app.use(express.session({secret: 'nicolasbrugneaux.me', store: MemStore({
+    reapInterval: 60000 * 10
+})}))
 app.use(express.static(path.join(__dirname, 'static')))
 app.use('/static/public', express.static(__dirname, 'public'))
 app.use(app.router)
 
 # development only
 if app.get('env') is 'development'
-	app.use(express.errorHandler())
+	app.use(express.errorHandler({ dumpExceptions: true, showStack: true }))
 
 # production only
 if app.get('env') is 'production'
-	# TODO
-	undefined
+	app.use(express.errorHandler())
+
 ###
 	Routes
 ###
@@ -44,13 +45,29 @@ if app.get('env') is 'production'
 # serve index and view partials
 app.get('/', routes.index)
 app.get('/partials/:name', routes.partials)
-app.post('/contact', (request, response) ->
-	console.log request.body.mail
-	res.redirect('/contact')
-)
+app.post('/contact', routes.contact)
 
-# JSON API
-app.get('/api/name', api.name)
+# what the normal user can get
+app.get('/api/blog', routes.blog)
+app.param('articleid', routes.blog_article_param)
+app.get('/api/article/:articleid', routes.blog_article_view)
+app.post('/api/article/comment', routes.blog_article_comment)
+
+# what the admin can do
+app.get('/admin', routes.isUser, routes.admin_all)
+app.get('/admin/article/add', routes.isUser, routes.admin_add_view)
+app.post('/admin/article/add', routes.isUser, routes.admin_add)
+app.get('/admin/article/edit/:articleid', routes.isUser, routes.admin_edit_view)
+app.post('/admin/article/edit/:articleid', routes.isUser, routes.admin_edit)
+app.get('/admin/article/delete/:articleid', routes.isUser, routes.admin_delete)
+
+app.get('/login', routes.login_view)
+app.post('/login', routes.login)
+app.get('/logout', routes.logout)
+
+app.get('/feed', routes.rss)
+
+#app.error(routes.errors)
 
 # redirect all others to the index (HTML5 history)
 app.get('*', routes.index)

@@ -1,0 +1,29 @@
+include ../head
+
+block body
+	div(ng-controller='AppCtrl')
+		div.container
+			div.jumbotron
+				h1 #{title} 
+			div
+				form.form(name="edit-article",method="post")
+					div.form-group.col-lg-12
+						label.sr-only(for="title") Title
+						input.form-control(name="title" type="text" placeholder="Enter the title...")
+
+					div.form-group.col-lg-12
+						label.sr-only(for="body") Content
+						textarea.form-control(name="body" type="textarea" rows="10" placeholder="Enter the content of the article...")
+
+					div.form-group.col-lg-12
+						label.sr-only(for="tags") Tags
+						input.form-control(name="tags" type="text" placeholder="Enter some tags...")
+						p.help-block (Comma separated values, like CSV)
+
+					div.col-lg-12.form-group
+						input(type="submit",value="Add",name="edit",class="btn btn-default btn-success")
+						a(href="/admin" name="edit",class="btn btn-default btn-danger") Cancel
+block scripts
+
+	script(src='scripts/lib/vendor/jquery/jquery-1.10.2.js')
+	script(src='scripts/lib/vendor/bootstrap/bootstrap.js')

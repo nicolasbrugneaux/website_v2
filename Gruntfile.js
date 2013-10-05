@@ -19,14 +19,18 @@ module.exports = function(grunt) {
 						'./app/static/scripts/coffee/controllers/home.coffee',
 						'./app/static/scripts/coffee/controllers/about.coffee',
 						'./app/static/scripts/coffee/controllers/skills.coffee',
-						'./app/static/scripts/coffee/controllers/contact.coffee'
+						'./app/static/scripts/coffee/controllers/contact.coffee',
+						'./app/static/scripts/coffee/controllers/blog.coffee',
+
 					],
 					'./app/static/scripts/directives.js': ['./app/static/scripts/coffee/directives.coffee'],
 					'./app/static/scripts/filters.js': ['./app/static/scripts/coffee/filters.coffee'],
 					'./app/static/scripts/services.js': ['./app/static/scripts/coffee/services.coffee'],
 
 
-					'./app/app.js': ['./app/coffee/app.coffee']
+					'./app/app.js': ['./app/coffee/app.coffee'],
+					'./app/models/models.js': ['./app/models/coffee/*.coffee'],
+					'./app/routes/routes.js': ['./app/routes/coffee/*.coffee']
 				}
 				
 			},
@@ -44,13 +48,16 @@ module.exports = function(grunt) {
 							'./app/static/scripts/coffee/controllers/about.coffee',
 							'./app/static/scripts/coffee/controllers/skills.coffee',
 							'./app/static/scripts/coffee/controllers/contact.coffee',
+							'./app/static/scripts/coffee/controllers/blog.coffee',
 
 						'./app/static/scripts/coffee/directives.coffee',
 						'./app/static/scripts/coffee/filters.coffee',
 						'./app/static/scripts/coffee/services.coffee'
 
 					],
-					'./app/app.js': ['./app/coffee/app.coffee']
+					'./app/app.js': ['./app/coffee/app.coffee'],
+					'./app/models/models.js': ['./app/models/coffee/*.coffee'],
+					'./app/routes/routes.js': ['./app/routes/coffee/*.coffee']
 				}
 			}
 		},
@@ -98,6 +105,8 @@ module.exports = function(grunt) {
 					'./app/static/stylesheets/less/vendor/bootstrap/*.less',
 					'./app/static/scripts/coffee/*.coffee',
 					'./app/static/scripts/coffee/controllers/*.coffee',
+					'./app/models/coffee/*.coffee',
+					'./app/routes/coffee/*.coffee',
 					'./app/coffee/*.coffee'
 				],
 				tasks: ['less:development', 'coffee:development']
@@ -108,6 +117,8 @@ module.exports = function(grunt) {
 					'./app/static/stylesheets/less/bootstrap/*.less',
 					'./app/static/scripts/coffee/*.coffee',
 					'./app/static/scripts/coffee/controllers/*.coffee',
+					'./app/models/coffee/*.coffee',
+					'./app/routes/coffee/*.coffee',
 					'./app/coffee/*.coffee'
 				],
 				tasks: ['less:production', 'coffee:production', 'uglify']

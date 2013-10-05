@@ -1,4 +1,3 @@
-
 ###
  GET home page.
 ###
@@ -9,3 +8,7 @@ exports.index = (req, res) ->
 exports.partials = (req, res) ->
 	name = req.params.name
 	res.render('partials/' + name)
+
+exports.contact = (req, res) ->
+	console.log req.body.mail
+	res.redirect('/contact')

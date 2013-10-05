@@ -6,6 +6,7 @@
 
 myApp = angular.module('myApp', [
 	'ngProgress'
+	'ngSanitize'
 	'myApp.controllers'
 	'myApp.filters'
 	'myApp.services'
@@ -44,6 +45,10 @@ myApp.config( ($routeProvider, $locationProvider) ->
 	$routeProvider.when('/contact', {
 		templateUrl: 'partials/contact',
 		controller: 'ContactCtrl'
+	})
+	$routeProvider.when('/blog', {
+		templateUrl: 'partials/blog',
+		controller: 'BlogCtrl'
 	})
 	$routeProvider.otherwise({
 		redirectTo: '/'

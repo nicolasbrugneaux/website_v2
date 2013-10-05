@@ -76,6 +76,10 @@ myApp.controller('MainCtrl',
 						name: 'Contact'
 						link: '/contact'
 					}
+					{
+						name: 'Blog'
+						link: '/blog'
+					}
 				]
 	]
 )
