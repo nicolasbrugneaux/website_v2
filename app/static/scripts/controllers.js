@@ -162,32 +162,93 @@
       $scope.data.location = $location;
       $scope.blog = {
         articles: [],
-        no_more_article: false
+        no_more_article: false,
+        last: 0,
+        limit: 4
       };
       $scope.init = function() {
-        var limit;
-        limit = 4;
-        return $scope.search(0, limit);
+        return $scope.search($scope.blog.last, $scope.blog.limit);
       };
       return $scope.search = function(offset, limit) {
         var query;
+        if (!$scope.blog.no_more_article) {
+          progress.start();
+          return query = $http.get("/api/blog?offset=" + offset + "&limit=" + limit).then(function(response) {
+            var article, _i, _len, _ref;
+            _ref = response.data.articles;
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+              article = _ref[_i];
+              if ($scope.blog.articles.length === 0) {
+                $scope.blog.articles.push({
+                  article: article,
+                  body_display: article.body.substr(0, 500) + "..."
+                });
+              } else {
+                $scope.blog.articles.push({
+                  article: article,
+                  body_display: article.body.substr(0, 250) + "..."
+                });
+              }
+            }
+            if (response.data.articles.length < 4) {
+              $scope.blog.no_more_article = true;
+            }
+            $scope.blog.last += response.data.articles.length;
+            progress.complete();
+            return $(".has-tooltip").tooltip();
+          }, function(response) {
+            console.log('An error has occurred: ' + response);
+            return progress.complete();
+          });
+        }
+      };
+    }
+  ]);
+
+  myApp.controller('ArticleCtrl', [
+    '$scope', '$rootScope', 'sharedProperties', '$location', 'progressbar', '$http', '$routeParams', function($scope, $rootScope, sharedProperties, $location, progress, $http, $routeParams) {
+      $scope.data.location = $location;
+      $scope.article = {
+        article: void 0,
+        add_comment: {
+          author: "",
+          email: "",
+          body: "",
+          id: void 0
+        }
+      };
+      $scope.init = function() {
+        return $scope.view();
+      };
+      $scope.view = function(slug) {
+        var query;
         progress.start();
-        return query = $http.get("/api/blog?				offset=" + offset + "				&limit=" + limit).then(function(response) {
-          var article, _i, _len, _ref;
-          _ref = response.data.articles;
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            article = _ref[_i];
-            $scope.blog.articles.push(article);
-          }
-          if (response.data.articles.length < 4) {
-            $scope.blog.no_more_article = true;
-          }
+        return query = $http.get("/api/article/" + $routeParams.slug).then(function(response) {
+          $scope.article.article = response.data;
+          $scope.article.add_comment.id = response.data._id;
           progress.complete();
-          return $(".has-tooltip").tooltip();
+          $(".has-tooltip").tooltip();
+          return console.log($scope.article);
         }, function(response) {
           console.log('An error has occurred: ' + response);
           return progress.complete();
         });
+      };
+      return $scope.add_comment = function() {
+        var query;
+        if ($scope.article.add_comment.author !== "" && $scope.article.add_comment.email !== "" && $scope.article.add_comment.body !== "") {
+          progress.start();
+          return query = $http.post("api/article/comment/", $scope.article.add_comment).then(function(response) {
+            $scope.article.article.comments = response.data.comments;
+            $scope.article.add_comment.author = "";
+            $scope.article.add_comment.email = "";
+            $scope.article.add_comment.body = "";
+            return progress.complete();
+          }, function(response) {
+            console.log("An error has occured: " + response.data);
+            return progress.complete();
+          });
+        }
       };
     }
   ]);

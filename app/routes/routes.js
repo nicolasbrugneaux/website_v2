@@ -37,6 +37,7 @@
     var article;
     article = {
       title: req.body.title,
+      slug: req.body.slug,
       body: req.body.body,
       tags: req.body.tags.split(','),
       state: 'published',
@@ -46,7 +47,6 @@
       author: req.session.user.name
     };
     return articleProvider.save(article, function(err, result) {
-      console.log(err, result);
       return res.redirect('/admin');
     });
   };
@@ -60,8 +60,10 @@
 
   exports.admin_edit = function(req, res) {
     var article;
+    console.log(req.body);
     article = {
       title: req.body.title,
+      slug: req.body.slug,
       body: req.body.body,
       tags: req.body.tags.split(',')
     };
@@ -73,6 +75,14 @@
   exports.admin_delete = function(req, res) {
     return articleProvider.deleteArticle(req.params.articleid, function(err, result) {
       return res.redirect('/admin');
+    });
+  };
+
+  exports.admin_delete_comment = function(req, res) {
+    console.log('test_delete_comment');
+    console.log(req.params);
+    return articleProvider.deleteComment(req.params.articleid, req.params.index, function(err, result) {
+      return res.redirect('/admin/article/edit/' + req.params.articleid);
     });
   };
 
@@ -120,9 +130,8 @@
   };
 
   exports.blog_article_view = function(req, res) {
-    console.log(req.docs);
-    return res.render('article_form', {
-      article: req.docs
+    return articleProvider.findBySlug(req.params.slug, function(error, docs) {
+      return res.send(docs);
     });
   };
 
@@ -135,11 +144,14 @@
     var data;
     data = {
       author: req.body.author,
-      body: req.body.comment,
+      email: req.body.email,
+      body: req.body.body,
       created: new Date()
     };
     return articleProvider.addComment(req.body.id, data, function(error, docs) {
-      return res.redirect("/api/article/" + req.body.id);
+      return articleProvider.findById(req.body.id, function(error, docs) {
+        return res.send(docs);
+      });
     });
   };
 

@@ -10,7 +10,6 @@ mixin article(article)
 					span.label.label-info(style="margin-right:2px;") #{tag}
 		br
 		p #{article.body.substr(0, 250) + '...'}
-		br
 		p
 			a(class="btn btn-default btn-sm btn-info",href="/admin/article/edit/#{article._id}") EDIT &nbsp;&nbsp;
 				span.icomoon-blog

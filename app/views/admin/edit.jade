@@ -9,12 +9,15 @@ block body
 			div
 				form.form(name="edit-article",method="post")
 					div.form-group.col-lg-12
+						label.sr-only(for="slug") Slug
+						input.form-control(name="slug" type="text" placeholder="Enter the slug..." value="#{article.slug}")
+					div.form-group.col-lg-12
 						label.sr-only(for="title") Title
-						input.form-control(name="title" type="text" placeholder="Enter the title..." value="#{article.title}")
+						input.form-control(name="title" type="text" placeholder="Enter the title..." value="#{article.title}" required)
 
 					div.form-group.col-lg-12
 						label.sr-only(for="body") Content
-						textarea.form-control(name="body" type="textarea" rows="10" placeholder="Enter the content of the article...") #{article.body}
+						textarea.form-control(name="body" type="textarea" rows="10" placeholder="Enter the content of the article..." required) #{article.body}
 
 					div.form-group.col-lg-12
 						label.sr-only(for="tags") Tags
@@ -24,8 +27,22 @@ block body
 
 					input(type="hidden",name="id",value="#{article._id}" hidden)
 					div.col-lg-12.form-group
-						input(type="submit",value="Edit",name="edit",class="btn btn-default btn-success")
+						input(type="submit",value="Edit",name="edit",class="btn btn-default btn-success" required)
 						a(href="/admin" name="edit",class="btn btn-default btn-danger") Cancel
+			if article.comments.length > 0
+				div.comments
+					h2 Comments
+					div.comments
+						- each comment in article.comments
+							div.row.comment
+								h4
+									a(class="btn btn-default btn-xs btn-danger", style="margin-right:5px",href="/admin/article/comment/delete/#{article._id}/#{article.comments.indexOf(comment)}") DELETE &nbsp;&nbsp;
+										span.icomoon-close
+									span #{comment.author} - 
+										a(href="mailto:#{comment.email}") #{comment.email} 
+										small - #{comment.created}
+								p #{comment.body}
+							hr
 block scripts
 
 	script(src='scripts/lib/vendor/jquery/jquery-1.10.2.js')

@@ -8,12 +8,15 @@ block body
 			div
 				form.form(name="edit-article",method="post")
 					div.form-group.col-lg-12
+						label.sr-only(for="slug") Slug
+						input.form-control(name="slug" type="text" placeholder="Enter the slug...")
+					div.form-group.col-lg-12
 						label.sr-only(for="title") Title
-						input.form-control(name="title" type="text" placeholder="Enter the title...")
+						input.form-control(name="title" type="text" placeholder="Enter the title..." required)
 
 					div.form-group.col-lg-12
 						label.sr-only(for="body") Content
-						textarea.form-control(name="body" type="textarea" rows="10" placeholder="Enter the content of the article...")
+						textarea.form-control(name="body" type="textarea" rows="10" placeholder="Enter the content of the article..." required)
 
 					div.form-group.col-lg-12
 						label.sr-only(for="tags") Tags

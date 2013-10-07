@@ -1,5 +1,5 @@
 (function() {
-  var ArticleProvider, BSON, Connection, Db, MongoDB, ObjectID, Provider, Server, UserProvider, _ref, _ref1,
+  var ArticleProvider, BSON, Connection, Db, MongoDB, ObjectID, Provider, Server, UserProvider, slugify, _ref, _ref1,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -34,6 +34,10 @@
     return Provider;
 
   })();
+
+  slugify = function(input) {
+    return input.replace(/<\/?[^>]+(>|$)/g, "").replace(/^\s\s*/, '').replace(/\s\s*$/, '').toLowerCase().replace(/[^a-z0-9_\-~!\+\s]+/g, '').replace(/[\s]+/g, '-');
+  };
 
   /*
   @ArticleProvider
@@ -92,6 +96,24 @@
       });
     };
 
+    ArticleProvider.prototype.findBySlug = function(slug, callback) {
+      return this.getCollection(function(error, article_collection) {
+        if (error) {
+          return callback(error);
+        } else {
+          return article_collection.findOne({
+            slug: slug
+          }, function(err, results) {
+            if (err) {
+              return callback(err);
+            } else {
+              return callback(null, results);
+            }
+          });
+        }
+      });
+    };
+
     ArticleProvider.prototype.save = function(articles, callback) {
       return this.getCollection(function(error, article_collection) {
         var article, comment, _i, _j, _len, _len1, _ref1;
@@ -103,7 +125,11 @@
           }
           for (_i = 0, _len = articles.length; _i < _len; _i++) {
             article = articles[_i];
+            article.full_slug;
             article.create_at = new Date();
+            if (article.slug === void 0) {
+              article.slug = slugify(article.title);
+            }
             if (article.comments === void 0) {
               article.comments = [];
             } else {
@@ -148,11 +174,13 @@
         if (error) {
           return callback(error);
         } else {
+          console.log(article.slug);
           return article_collection.update({
             _id: ObjectID(id)
           }, {
             $set: {
               title: article.title,
+              slug: article.slug,
               body: article.body,
               tags: article.tags,
               modified: new Date()
@@ -180,6 +208,37 @@
               return callback(err);
             } else {
               return callback(null, results);
+            }
+          });
+        }
+      });
+    };
+
+    ArticleProvider.prototype.deleteComment = function(id, index, callback) {
+      return this.getCollection(function(error, article_collection) {
+        if (error) {
+          return callback(error);
+        } else {
+          return article_collection.findOne({
+            _id: ObjectID(id)
+          }, function(err, result) {
+            if (err) {
+              return callback(err);
+            } else {
+              result.comments.splice(index, 1);
+              return article_collection.update({
+                _id: ObjectID(id)
+              }, {
+                $set: {
+                  comments: result.comments
+                }
+              }, function(err, results) {
+                if (err) {
+                  return callback(err);
+                } else {
+                  return callback(null, results);
+                }
+              });
             }
           });
         }

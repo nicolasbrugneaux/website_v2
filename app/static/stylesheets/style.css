@@ -6751,6 +6751,9 @@ body.modal-open,
 .pull-left {
   float: left !important;
 }
+.align-center {
+  text-align: center;
+}
 .hide {
   display: none !important;
 }
@@ -7378,6 +7381,9 @@ body {
 .contact .contact-details .social-icons a:hover {
   color: #13987e;
   text-decoration: none;
+}
+.blog .article.col-lg-4 .body {
+  min-height: 150px;
 }
 .footer .footer-logos {
   margin-top: 20px;

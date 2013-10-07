@@ -16,6 +16,7 @@ exports.admin_add_view = (req, res) ->
 exports.admin_add = (req, res) ->
 	article = {
 		title: req.body.title
+		slug: req.body.slug
 		body: req.body.body
 		tags: req.body.tags.split(',')
 		state: 'published'
@@ -26,7 +27,6 @@ exports.admin_add = (req, res) ->
 	}
 
 	articleProvider.save(article, (err, result) ->
-		console.log(err, result)
 		res.redirect('/admin')
 	)
 
@@ -37,8 +37,10 @@ exports.admin_edit_view = (req, res) ->
 	})
 
 exports.admin_edit = (req, res) ->
+	console.log req.body
 	article = {
 		title: req.body.title
+		slug: req.body.slug
 		body: req.body.body
 		tags: req.body.tags.split(',')
 	}
@@ -49,4 +51,11 @@ exports.admin_edit = (req, res) ->
 exports.admin_delete = (req, res) ->
 	articleProvider.deleteArticle( req.params.articleid, (err, result) ->
 		res.redirect('/admin')
+	)
+
+exports.admin_delete_comment = (req, res) ->
+	console.log 'test_delete_comment'
+	console.log req.params
+	articleProvider.deleteComment( req.params.articleid, req.params.index, (err, result) ->
+		res.redirect('/admin/article/edit/' + req.params.articleid)
 	)

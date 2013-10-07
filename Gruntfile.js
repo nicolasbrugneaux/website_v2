@@ -21,6 +21,7 @@ module.exports = function(grunt) {
 						'./app/static/scripts/coffee/controllers/skills.coffee',
 						'./app/static/scripts/coffee/controllers/contact.coffee',
 						'./app/static/scripts/coffee/controllers/blog.coffee',
+						'./app/static/scripts/coffee/controllers/article.coffee',
 
 					],
 					'./app/static/scripts/directives.js': ['./app/static/scripts/coffee/directives.coffee'],
@@ -49,6 +50,7 @@ module.exports = function(grunt) {
 							'./app/static/scripts/coffee/controllers/skills.coffee',
 							'./app/static/scripts/coffee/controllers/contact.coffee',
 							'./app/static/scripts/coffee/controllers/blog.coffee',
+							'./app/static/scripts/coffee/controllers/article.coffee',
 
 						'./app/static/scripts/coffee/directives.coffee',
 						'./app/static/scripts/coffee/filters.coffee',
@@ -75,7 +77,7 @@ module.exports = function(grunt) {
 				options: {
 					banner: '/*!\n<%= pkg.name %> - v<%= pkg.version %>\n' +
 						'@nicolasbrugneaux.me - style.min.css\n' +
-        				'<%= grunt.template.today("yyyy-mm-dd") %>\n*/\n',
+						'<%= grunt.template.today("yyyy-mm-dd") %>\n*/\n',
 					paths: ['./app/static/stylesheets/less'],
 					yuicompress: true
 				},
@@ -88,7 +90,7 @@ module.exports = function(grunt) {
 			options: {
 				banner: '/*!\n<%= pkg.name %> - v<%= pkg.version %>\n' +
 						'@nicolasbrugneaux.me - scripts.min.js\n' +
-        				'<%= grunt.template.today("yyyy-mm-dd") %>\n*/\n',
+						'<%= grunt.template.today("yyyy-mm-dd") %>\n*/\n',
 				mangle: false,
 				sourceMap: './app/static/scripts/scripts.min.map'
 			},
@@ -126,10 +128,10 @@ module.exports = function(grunt) {
 		}
 	});
 
-    grunt.loadNpmTasks('grunt-contrib-coffee');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-coffee');
+	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 	// Default task.
 	grunt.registerTask('default', 'watch:development');

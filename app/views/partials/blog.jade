@@ -5,18 +5,34 @@ div.blog(ng-controller="BlogCtrl" ng-init="init()")
 			p
 				| This is where I'll share my thoughts, my discoveries or anything that I wanted to share with you.
 	hr
-	div.articles
-		div.article(ng-repeat="(key, article) in blog.articles" ng-class="{true:'col-lg-12', false:'col-lg-4'}[$index==0]")
+	div.articles.row
+		div.article(ng-repeat="(key, article_wrapper) in blog.articles" ng-class="{true:'col-lg-12', false:'col-lg-4'}[$index==0]")
 			div.title
-				h3(ng-bind-html="article.title"), 
-					small by {{ article.author}} - {{ article.created_at }}
-			div.body(ng-bind-html="article.body")
+				h3(ng-bind-html="article_wrapper.article.title")
+				div.text-muted
+					small
+						em by 
+							span.text-info {{ article_wrapper.article.author }} 
+							| - {{ article_wrapper.article.created_at |date:'dd-MMM-yyyy' }}
+					span.pull-right
+						span Comments 
+						span.badge {{ article_wrapper.article.comments.length }}
 			div.tags
-				span.label.label-default.label-info(ng-repeat="(key, tag) in article.tags") {{ tag }}
-	div.load(ng-switch , on="blog.no_more_article")
-		button.btn.btn-default(ng-click="search(last,4)" ng-switch-when="false")
-		div.alert.alert-warning.alert-dismissable(ng-switch-when="true")
-			button.close(type="button" data-dismiss="alert" aria-hidden="true") &times;
-			p No more article to load.
+				span.label.label-default.label-info(ng-repeat="(key, tag) in article_wrapper.article.tags" style="margin-right:2px;") {{ tag }}
+			br
+			div.body(ng-bind-html-unsafe="article_wrapper.body_display")
+			div.read-more
+				a.btn.btn-default.btn-success(ng-href="/blog/article/{{ article_wrapper.article.slug }}")
+					| Read more.
+	br
+	div.load.row(ng-switch="blog.no_more_article")
+		div.col-lg-12(ng-switch-when="false")
+			button.center-block.btn.btn-default(ng-click="search(blog.last,blog.limit)")
+				| Load older articles. »
+		br
+		div.col-lg-12(ng-switch-when="true")
+			div.alert.alert-warning.alert-dismissable
+				button.close(type="button" data-dismiss="alert" aria-hidden=true) &times;
+				p.align-center No more article to load.
 
 

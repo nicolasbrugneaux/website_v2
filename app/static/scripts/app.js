@@ -46,6 +46,10 @@
       templateUrl: 'partials/blog',
       controller: 'BlogCtrl'
     });
+    $routeProvider.when('/blog/article/:slug', {
+      templateUrl: 'partials/article',
+      controller: 'ArticleCtrl'
+    });
     $routeProvider.otherwise({
       redirectTo: '/'
     });

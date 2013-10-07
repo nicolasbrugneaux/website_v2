@@ -23,21 +23,23 @@ exports.blog_article_param = (req, res, next, id) ->
 			next()
 	)
 exports.blog_article_view = (req, res) ->
-	console.log req.docs
-	res.render('article_form', {
-		article: req.docs
-	})
+	articleProvider.findBySlug(req.params.slug, (error, docs) ->
+		res.send(docs)
+	)
 ###
  POST comment 
 ###
 exports.blog_article_comment = (req, res) ->
 	data = {
 		author: req.body.author
-		body: req.body.comment
+		email: req.body.email
+		body: req.body.body
 		created: new Date()
 	}
 	articleProvider.addComment(req.body.id, data, (error, docs) ->
-		res.redirect("/api/article/#{req.body.id}")
+		articleProvider.findById(req.body.id, (error, docs) ->
+			res.send(docs)
+		)
 	)
 
 ###

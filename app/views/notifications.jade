@@ -1,2 +1,22 @@
+mixin showAlert(alerts)
+	for alert in alerts
+		button.close(type="button" data-dismiss="alert" aria-hidden=true) &times;
+		p #{alert}
+
 div.notifications
-	
+- if (flash)
+	- if (flash.info)
+		div.alert.alert-info.alert-dismissable
+		mixin showAlert(flash.info)
+
+	- if (flash.success)
+		div.alert.alert-success.alert-dismissable
+		mixin showAlert(flash.success)
+
+	- if (flash.error)
+		div.alert.alert-danger.alert-dismissable
+		mixin showAlert(flash.error)
+
+	- if (flash.error)
+		div.alert.alert-warning.alert-dismissable
+		mixin showAlert(flash.warning)
