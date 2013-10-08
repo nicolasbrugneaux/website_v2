@@ -15,12 +15,12 @@ div.blog(ng-controller="BlogCtrl" ng-init="init()")
 							span.text-info {{ article_wrapper.article.author }} 
 							| - {{ article_wrapper.article.created_at |date:'dd-MMM-yyyy' }}
 					span.pull-right
-						span Comments 
+						span(ng-class="{true:'hide'}[$index!=0]") Comments 
 						span.badge {{ article_wrapper.article.comments.length }}
 			div.tags
 				span.label.label-default.label-info(ng-repeat="(key, tag) in article_wrapper.article.tags" style="margin-right:2px;") {{ tag }}
 			br
-			div.body(ng-bind-html-unsafe="article_wrapper.body_display")
+			div.body.align-justify(ng-bind-html-unsafe="article_wrapper.body_display")
 			div.read-more
 				a.btn.btn-default.btn-success(ng-href="/blog/article/{{ article_wrapper.article.slug }}")
 					| Read more.
@@ -31,7 +31,7 @@ div.blog(ng-controller="BlogCtrl" ng-init="init()")
 				| Load older articles. »
 		br
 		div.col-lg-12(ng-switch-when="true")
-			div.alert.alert-warning.alert-dismissable
+			div.alert.alert-info.alert-dismissable
 				button.close(type="button" data-dismiss="alert" aria-hidden=true) &times;
 				p.align-center No more article to load.
 

@@ -6754,6 +6754,9 @@ body.modal-open,
 .align-center {
   text-align: center;
 }
+.align-justify {
+  text-align: justify;
+}
 .hide {
   display: none !important;
 }
@@ -7384,6 +7387,12 @@ body {
 }
 .blog .article.col-lg-4 .body {
   min-height: 150px;
+}
+.article .social a {
+  margin-right: 5px;
+}
+.footer {
+  height: 100px;
 }
 .footer .footer-logos {
   margin-top: 20px;
