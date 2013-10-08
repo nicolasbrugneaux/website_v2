@@ -3,11 +3,12 @@
 ###
 class ArticleProvider extends Provider
 	
-	getCollection: (callback) ->
-		@db.collection('articles', (error, article_collection) ->
-			if error then callback(error) else callback(null, article_collection)
+	getCollection: (callback) =>
+		@db.createCollection('articles', (error, article_collection) =>
+			@db.collection('articles', (error, article_collection) ->
+				if error then callback(error) else callback(null, article_collection)
+			)
 		)
-
 	findAll: (sort, offset, limit, callback) ->
 		@getCollection( (error, article_collection) ->
 			if error then callback(error)

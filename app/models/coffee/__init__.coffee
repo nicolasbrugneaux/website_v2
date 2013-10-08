@@ -1,20 +1,24 @@
 MongoDB = require('mongodb')
+connect = require('connect')
+
 Db = MongoDB.Db
 Connection = MongoDB.Connection
 Server = MongoDB.Server
 BSON = MongoDB.BSON
 ObjectID = MongoDB.ObjectID
+db_uri = process.env.MONGOLAB_URI or 'mongodb://localhost:27017/blog'
 
 class Provider
-	constructor: (host, port) ->
-		@db = new Db('blog', new Server(host, port, {auto_reconnect: true, safe: false}, {} ))
-		@db.open( (error, db) ->
-			if not error 
-				console.log("Connected to #{host}:#{port}\\blog")
-			else
-				console.log(error)
+	constructor: () ->
+		MongoDB.connect(db_uri, {}, (error, db) =>
+			@db = db
+			console.log("Connected to #{db}")
+			@db.addListener('error', (error) ->
+				console.log("Error connecting to MongoLab: #{error}")
+			)
 			db
 		)
+
 slugify = (input) ->
     input
     .replace(/<\/?[^>]+(>|$)/g, "") # remove html tags

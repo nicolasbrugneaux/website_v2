@@ -1,15 +1,11 @@
 (function() {
-  var articleProvider, host, models, port, userProvider;
+  var articleProvider, models, userProvider;
 
   models = require('../models/models');
 
-  host = 'localhost';
+  articleProvider = new models.ArticleProvider();
 
-  port = 27017;
-
-  articleProvider = new models.ArticleProvider(host, port);
-
-  userProvider = new models.UserProvider(host, port);
+  userProvider = new models.UserProvider();
 
   /*
    GET admin page.

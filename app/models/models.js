@@ -1,9 +1,12 @@
 (function() {
-  var ArticleProvider, BSON, Connection, Db, MongoDB, ObjectID, Provider, Server, UserProvider, slugify, _ref, _ref1,
+  var ArticleProvider, BSON, Connection, Db, MongoDB, ObjectID, Provider, Server, UserProvider, connect, db_uri, slugify, _ref, _ref1,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   MongoDB = require('mongodb');
+
+  connect = require('connect');
 
   Db = MongoDB.Db;
 
@@ -15,18 +18,17 @@
 
   ObjectID = MongoDB.ObjectID;
 
+  db_uri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/blog';
+
   Provider = (function() {
-    function Provider(host, port) {
-      this.db = new Db('blog', new Server(host, port, {
-        auto_reconnect: true,
-        safe: false
-      }, {}));
-      this.db.open(function(error, db) {
-        if (!error) {
-          console.log("Connected to " + host + ":" + port + "\\blog");
-        } else {
-          console.log(error);
-        }
+    function Provider() {
+      var _this = this;
+      MongoDB.connect(db_uri, {}, function(error, db) {
+        _this.db = db;
+        console.log("Connected to " + db);
+        _this.db.addListener('error', function(error) {
+          return console.log("Error connecting to MongoLab: " + error);
+        });
         return db;
       });
     }
@@ -48,17 +50,21 @@
     __extends(ArticleProvider, _super);
 
     function ArticleProvider() {
+      this.getCollection = __bind(this.getCollection, this);
       _ref = ArticleProvider.__super__.constructor.apply(this, arguments);
       return _ref;
     }
 
     ArticleProvider.prototype.getCollection = function(callback) {
-      return this.db.collection('articles', function(error, article_collection) {
-        if (error) {
-          return callback(error);
-        } else {
-          return callback(null, article_collection);
-        }
+      var _this = this;
+      return this.db.createCollection('articles', function(error, article_collection) {
+        return _this.db.collection('articles', function(error, article_collection) {
+          if (error) {
+            return callback(error);
+          } else {
+            return callback(null, article_collection);
+          }
+        });
       });
     };
 
