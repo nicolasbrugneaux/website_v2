@@ -11,6 +11,10 @@ I'm still new with all of this.
     app/
       coffee/
         app.coffee        --> app config
+      models/
+        coffee/
+          models.coffee
+        models.js
       app.js
       package.json        --> for npm
       static/             --> all of the files to be used in on the client side
@@ -25,8 +29,9 @@ I'm still new with all of this.
         img/              --> image files
         scripts/               --> javascript files
           coffee/
+            controllers/
+              *.coffee          --> application controllers
             app.coffee          --> declare top-level app module
-            controllers.coffee  --> application controllers
             directives.coffee   --> custom angular directives
             filters.coffee      --> custom angular filters
             services.coffee     --> custom angular services
@@ -52,6 +57,6 @@ I'm still new with all of this.
       views/
         index.jade        --> main page for app
         layout.jade       --> doctype, title, head boilerplate
+        *.jade
         partials/         --> angular view partials (partial jade templates)
-          partial1.jade
-          partial2.jade
+          *.jade
