@@ -4,6 +4,7 @@ myApp.controller('ArticleCtrl',
 		$scope.data.location = $location
 		$scope.article = {
 			article: undefined
+			validated_once: false
 			add_comment: {
 				author: ""
 				email: ""
@@ -32,6 +33,8 @@ myApp.controller('ArticleCtrl',
 
 				)
 		$scope.add_comment = () ->
+			$scope.article.validated_once = true
+			console.log($scope.article)
 			if ($scope.article.add_comment.author != "" and $scope.article.add_comment.email != "" and $scope.article.add_comment.body != "" )
 				progress.start()
 				query = $http.post(
@@ -45,11 +48,13 @@ myApp.controller('ArticleCtrl',
 						$scope.article.add_comment.author = ""
 						$scope.article.add_comment.email = ""
 						$scope.article.add_comment.body = ""
+						$scope.article.validated_once = false
 						progress.complete()
 
 					# error
 					(response) ->
 						console.log "An error has occured: "+response.data
+						$scope.article.validated_once = false
 						progress.complete()
 				)
 	]

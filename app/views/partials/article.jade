@@ -43,15 +43,15 @@ div.article(ng-controller="ArticleCtrl" ng-init="init()")
 							| {{ comment.created | date:'dd-MMM-yyyy hh:mm' }}
 					hr
 	div.row.add-comment
-		form.form(role="form" novalidate)
+		form.form(role="form" name="commentForm" novalidate)
 			div.row.col-lg-12
-				div.form-group.col-lg-6
+				div.form-group.col-lg-6(ng-class="{'has-error':commentForm.author.$error.required&&article.validated_once}")
 					label.sr-only(for="author") Name
 					input.form-control(type="text" id="author" name="author" ng-model="article.add_comment.author" placeholder="Enter your name..." required)
-				div.form-group.col-lg-6
+				div.form-group.col-lg-6(ng-class="{'has-error':commentForm.email.$error.email||(commentForm.email.$error.required&&article.validated_once)}")
 					label.sr-only(for="email") Email
 					input.form-control(type="email" id="email" name="email" ng-model="article.add_comment.email" placeholder="Enter your email..." required)
-			div.form-group.col-lg-12
+			div.form-group.col-lg-12(ng-class="{'has-error':commentForm.body.$error.required&&article.validated_once}")
 				label.sr-only(for="body") Message
 				textarea.form-control(type="textarea" id="body" name="body" ng-model="article.add_comment.body" rows="3" placeholder="Enter your message..." required)
 			div.col-lg-12

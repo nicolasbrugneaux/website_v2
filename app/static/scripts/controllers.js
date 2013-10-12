@@ -210,6 +210,7 @@
       $scope.data.location = $location;
       $scope.article = {
         article: void 0,
+        validated_once: false,
         add_comment: {
           author: "",
           email: "",
@@ -236,6 +237,8 @@
       };
       return $scope.add_comment = function() {
         var query;
+        $scope.article.validated_once = true;
+        console.log($scope.article);
         if ($scope.article.add_comment.author !== "" && $scope.article.add_comment.email !== "" && $scope.article.add_comment.body !== "") {
           progress.start();
           return query = $http.post("api/article/comment/", $scope.article.add_comment).then(function(response) {
@@ -243,9 +246,11 @@
             $scope.article.add_comment.author = "";
             $scope.article.add_comment.email = "";
             $scope.article.add_comment.body = "";
+            $scope.article.validated_once = false;
             return progress.complete();
           }, function(response) {
             console.log("An error has occured: " + response.data);
+            $scope.article.validated_once = false;
             return progress.complete();
           });
         }
