@@ -5,26 +5,25 @@ div.contact
 			p
 				| A suggestion, an idea or just a question? Feel free to contact me by any of these means down below.
 			p
-				| Some feedback is always appreciated. 
-				span.icomoon-wink
+				| Some feedback is always appreciated.
 	hr
 	div.row
 		div.col-lg-12
 			div.col-lg-6.contact-details
 				dl.dl-horizontal
 					dt.coordinates.coordinates-phone
-						span.icomoon-address-book
+						span.icon-telephone
 					dd
 						| {{ data.info.phone }}
 					dt.coordinates.coordinates-mail
-						span.icomoon-mail-2
+						span.icon-social-email
 					dd
 						a(href="mailto:{{ data.info.email }}") {{ data.info.email }}
 				hr
 				ul.list-inline.social-icons
 					li(ng-repeat="item in data.links.social")
 						a.has-tooltip(target="_blank" href="{{ item.link }}" data-toggle="tooltip" data-placement="bottom" title="{{ item.name }}" data-original-title="{{ item.name }}")
-							span(class="icomoon-{{ item.class }}")
+							span(class="icon-social-{{ item.class }}")
 			div.col-lg-6
 				form.form(role="form" action="/contact" method="POST")
 					div.form-group.col-lg-12

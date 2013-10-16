@@ -15,8 +15,8 @@ nav#bt-menu.bt-menu.bt-menu-close
 			a(href="{{ item.link }}") {{ item.name }}
 	ul.social-menu
 		li(ng-repeat="item in data.links.social")
-			a.btn-icon.has-tooltip(target="_blank" href="{{ item.link }}" class="icomoon-{{ item.class }}"
+			a.btn-icon.has-tooltip(target="_blank" href="{{ item.link }}" class="icon-social-{{ item.class }}"
 				data-toggle="tooltip" data-placement="top" title="{{ item.name }}" data-original-title="{{ item.name }}")
 		li
-			a.btn-icon.has-tooltip(href="/public/CV.pdf" target="_blank" class="icomoon-cloud-download"
+			a.btn-icon.has-tooltip(href="/public/CV.pdf" target="_blank" class="icon-download"
 				data-toggle="tooltip" data-placement="top" title="Download my CV" data-original-title="Download my CV")
