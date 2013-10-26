@@ -6807,6 +6807,9 @@ body {
 .footer {
   height: 100px;
 }
+.footer i {
+  font-size: 20px;
+}
 .footer .footer-logos {
   margin-top: 20px;
 }

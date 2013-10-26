@@ -23,7 +23,8 @@ div.blog(ng-controller="BlogCtrl" ng-init="init()")
 			div.body.align-justify(ng-bind-html-unsafe="article_wrapper.body_display")
 			div.read-more
 				a.btn.btn-default.btn-success(ng-href="/blog/article/{{ article_wrapper.article.slug }}")
-					| Read more.
+					| Read more 
+					i.typcn.typcn-arrow-forward-outline 
 	br
 	div.load.row(ng-switch="blog.no_more_article")
 		div.col-lg-12(ng-switch-when="false")
