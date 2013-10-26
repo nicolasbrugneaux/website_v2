@@ -12,9 +12,9 @@ mixin article(article)
 		p #{article.body.substr(0, 250) + '...'}
 		p
 			a(class="btn btn-default btn-sm btn-info",href="/admin/article/edit/#{article._id}") EDIT &nbsp;&nbsp;
-				span.icomoon-blog
+				span.typcn.typcn-edit
 			a(class="btn btn-default btn-sm btn-danger",href="/admin/article/delete/#{article._id}") DELETE &nbsp;&nbsp;
-				span.icomoon-close
+				span.typcn.typcn-times
 		hr
 
 
@@ -29,7 +29,7 @@ block body
 			div(ng-view)
 				div
 					a(class="btn btn-default btn-sm btn-success", href="/admin/article/add") NEW &nbsp;&nbsp;
-						span.icomoon-quill
+						span.typcn.typcn-pen
 				div
 					- each article in articles
 						div.row
