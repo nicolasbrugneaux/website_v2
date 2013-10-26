@@ -1,4 +1,4 @@
-# website_v2
+# website_v2 [![Build Status](https://secure.travis-ci.org/nicolasbrugneaux/website_v2.png?branch=master)](http://travis-ci.org/nicolasbrugneaux/website_v2)
 
 I used [Angular Express Seed](https://github.com/btford/angular-express-seed) by btford
 Then I customized with Grunt to use cofeescript and less more efficiently.
