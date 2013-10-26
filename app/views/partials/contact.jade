@@ -12,18 +12,18 @@ div.contact
 			div.col-lg-6.contact-details
 				dl.dl-horizontal
 					dt.coordinates.coordinates-phone
-						span.icon-telephone
+						span.typcn.typcn-phone
 					dd
 						| {{ data.info.phone }}
 					dt.coordinates.coordinates-mail
-						span.icon-social-email
+						span.typcn.typcn-mail
 					dd
 						a(href="mailto:{{ data.info.email }}") {{ data.info.email }}
 				hr
 				ul.list-inline.social-icons
 					li(ng-repeat="item in data.links.social")
 						a.has-tooltip(target="_blank" href="{{ item.link }}" data-toggle="tooltip" data-placement="bottom" title="{{ item.name }}" data-original-title="{{ item.name }}")
-							span(class="icon-social-{{ item.class }}")
+							span(class="typcn typcn-social-{{ item.class }}")
 			div.col-lg-6
 				form.form(role="form" action="/contact" method="POST")
 					div.form-group.col-lg-12

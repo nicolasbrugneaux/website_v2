@@ -43,10 +43,6 @@
               link: "https://facebook.com/nicolas.brugneaux",
               "class": "facebook"
             }, {
-              name: "Google+",
-              link: "https://plus.google.com/113934921579560371005",
-              "class": "google-plus"
-            }, {
               name: "LinkedIn",
               link: "http://www.linkedin.com/profile/view?id=267950653",
               "class": "linkedin"
