@@ -1,0 +1,9 @@
+form(action="", method="post", enctype="multipart/form-data")
+	div.col-lg-10
+		div.col-lg-5
+			input(class="btn btn-default btn-sm btn-success" type="file", name="fileUpload")
+		div.col-lg-7
+			label.sr-only(for="fileName") Slug
+			input.form-control(name="fileName" type="text" placeholder="New name..." value="")
+	div.col-lg-2
+		input(type="submit",value="Upload",name="edit",class="btn btn-default btn-sm btn-success typcn.typcn-upload")

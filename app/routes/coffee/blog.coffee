@@ -60,8 +60,8 @@ exports.rss = (req, res) ->
 			rssfeed += "
 			<item>
 			<title>#{doc.title}</title>
-			<description>#{doc.body.substr(0, 250) + '...'}</description>
-			<link>http://nicolasbrugneaux.me/posts/#{doc._id}</link>
+			<description>#{doc.body.replace(/<\/?[^>]+(>|$)/g, "").substr(0, 400) + '...'}</description>
+			<link>http://nicolasbrugneaux.me/blog/article/#{doc.slug}</link>
 			<pubDate>#{doc.created_at}</pubDate>
 			</item>
 			"

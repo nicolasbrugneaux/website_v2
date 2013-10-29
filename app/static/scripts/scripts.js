@@ -6,7 +6,7 @@
 
   var create_dynamic_menu, myApp, slide_notifications;
 
-  myApp = angular.module('myApp', ['ngProgress', 'myApp.controllers', 'myApp.filters', 'myApp.services', 'myApp.directives']);
+  myApp = angular.module('myApp', ['ngProgress', 'ngSanitize', 'myApp.controllers', 'myApp.filters', 'myApp.services', 'myApp.directives']);
 
   myApp.factory('sharedProperties', function($rootScope) {
     var list, sharedProperties;
@@ -41,6 +41,14 @@
     $routeProvider.when('/contact', {
       templateUrl: 'partials/contact',
       controller: 'ContactCtrl'
+    });
+    $routeProvider.when('/blog', {
+      templateUrl: 'partials/blog',
+      controller: 'BlogCtrl'
+    });
+    $routeProvider.when('/blog/article/:slug', {
+      templateUrl: 'partials/article',
+      controller: 'ArticleCtrl'
     });
     $routeProvider.otherwise({
       redirectTo: '/'
@@ -92,10 +100,6 @@
               link: "https://facebook.com/nicolas.brugneaux",
               "class": "facebook"
             }, {
-              name: "Google+",
-              link: "https://plus.google.com/113934921579560371005",
-              "class": "google-plus"
-            }, {
               name: "LinkedIn",
               link: "http://www.linkedin.com/profile/view?id=267950653",
               "class": "linkedin"
@@ -114,6 +118,9 @@
             }, {
               name: 'Contact',
               link: '/contact'
+            }, {
+              name: 'Blog',
+              link: '/blog'
             }
           ]
         }
@@ -200,6 +207,107 @@
         $(".has-tooltip").tooltip();
         return progress.complete();
       }, 500);
+    }
+  ]);
+
+  myApp.controller('BlogCtrl', [
+    '$scope', '$rootScope', 'sharedProperties', '$location', 'progressbar', '$http', function($scope, $rootScope, sharedProperties, $location, progress, $http) {
+      $scope.data.location = $location;
+      $scope.blog = {
+        articles: [],
+        no_more_article: false,
+        last: 0,
+        limit: 4
+      };
+      $scope.init = function() {
+        return $scope.search($scope.blog.last, $scope.blog.limit);
+      };
+      return $scope.search = function(offset, limit) {
+        var query;
+        if (!$scope.blog.no_more_article) {
+          progress.start();
+          return query = $http.get("/api/blog?offset=" + offset + "&limit=" + limit).then(function(response) {
+            var article, _i, _len, _ref;
+            _ref = response.data.articles;
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+              article = _ref[_i];
+              if ($scope.blog.articles.length === 0) {
+                $scope.blog.articles.push({
+                  article: article,
+                  body_display: article.body.substr(0, 500) + "..."
+                });
+              } else {
+                $scope.blog.articles.push({
+                  article: article,
+                  body_display: article.body.substr(0, 250) + "..."
+                });
+              }
+            }
+            if (response.data.articles.length < 4) {
+              $scope.blog.no_more_article = true;
+            }
+            $scope.blog.last += response.data.articles.length;
+            progress.complete();
+            return $(".has-tooltip").tooltip();
+          }, function(response) {
+            console.log('An error has occurred: ' + response);
+            return progress.complete();
+          });
+        }
+      };
+    }
+  ]);
+
+  myApp.controller('ArticleCtrl', [
+    '$scope', '$rootScope', 'sharedProperties', '$location', 'progressbar', '$http', '$routeParams', function($scope, $rootScope, sharedProperties, $location, progress, $http, $routeParams) {
+      $scope.data.location = $location;
+      $scope.article = {
+        article: void 0,
+        validated_once: false,
+        add_comment: {
+          author: "",
+          email: "",
+          body: "",
+          id: void 0
+        }
+      };
+      $scope.init = function() {
+        return $scope.view();
+      };
+      $scope.view = function(slug) {
+        var query;
+        progress.start();
+        return query = $http.get("/api/article/" + $routeParams.slug).then(function(response) {
+          $scope.article.article = response.data;
+          $scope.article.add_comment.id = response.data._id;
+          progress.complete();
+          $(".has-tooltip").tooltip();
+          return console.log($scope.article);
+        }, function(response) {
+          console.log('An error has occurred: ' + response);
+          return progress.complete();
+        });
+      };
+      return $scope.add_comment = function() {
+        var query;
+        $scope.article.validated_once = true;
+        console.log($scope.article);
+        if ($scope.article.add_comment.author !== "" && $scope.article.add_comment.email !== "" && $scope.article.add_comment.body !== "") {
+          progress.start();
+          return query = $http.post("api/article/comment/", $scope.article.add_comment).then(function(response) {
+            $scope.article.article.comments = response.data.comments;
+            $scope.article.add_comment.author = "";
+            $scope.article.add_comment.email = "";
+            $scope.article.add_comment.body = "";
+            $scope.article.validated_once = false;
+            return progress.complete();
+          }, function(response) {
+            console.log("An error has occured: " + response.data);
+            $scope.article.validated_once = false;
+            return progress.complete();
+          });
+        }
+      };
     }
   ]);
 

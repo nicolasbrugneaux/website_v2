@@ -49,6 +49,8 @@ app.configure( () ->
 app.get('/', routes.index)
 app.get('/partials/:name', routes.partials)
 app.post('/contact', routes.contact)
+app.get('/public', routes.public)
+app.get('/public/img', routes.public_images)
 
 # what the normal user can get
 app.get('/api/blog', routes.blog)
@@ -58,6 +60,7 @@ app.post('/api/article/comment', routes.blog_article_comment)
 
 # what the admin can do
 app.get('/admin', routes.isUser, routes.admin_all)
+app.post('/admin', routes.isUser, routes.admin_upload_file)
 app.get('/admin/article/add', routes.isUser, routes.admin_add_view)
 app.post('/admin/article/add', routes.isUser, routes.admin_add)
 app.get('/admin/article/edit/:articleid', routes.isUser, routes.admin_edit_view)

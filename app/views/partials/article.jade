@@ -17,8 +17,8 @@ div.article(ng-controller="ArticleCtrl" ng-init="init()")
 		span.label.label-default.label-info(ng-repeat="(key, tag) in article.article.tags" style="margin-right:2px;") {{ tag }}
 	div.social.col-lg-6
 		div.pull-right
-			a.badge.has-tooltip(href="https://twitter.com/share?url=http://nicolasbrrugneaux.me/blog/article/{{article.article.slug}}&via=nbrugneaux&text={{article.article.title}} -" class='typcn typcn-social-{{data.links.social[0].class}}' target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tweet" ) 
-			a.badge.has-tooltip(href="https://www.facebook.com/sharer/sharer.php?u=http://nicolasbrrugneaux.me/blog/article/{{article.article.slug}}" class='typcn typcn-social-{{data.links.social[2].class}}' target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Share" ) 
+			a.badge.has-tooltip(href="https://twitter.com/share?url={{ data.info.name }}/blog/article/{{article.article.slug}}&via=nbrugneaux&text={{article.article.title}} -" class='typcn typcn-social-{{data.links.social[0].class}}' target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tweet" ) 
+			a.badge.has-tooltip(href="https://www.facebook.com/sharer/sharer.php?u={{ data.info.name }}/blog/article/{{article.article.slug}}" class='typcn typcn-social-{{data.links.social[2].class}}' target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Share" ) 
 	br
 
 

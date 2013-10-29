@@ -8,6 +8,24 @@ exports.admin_all = (req, res) ->
 			articles: docs
 		})
 	)
+exports.admin_upload_file = (req, res) ->
+
+	fs.readFile req.files.fileUpload.path, (err, data) ->
+		newPath = __dirname + "/../static/public/"
+		img = new RegExp(/^image\//)
+		if img.test req.files.fileUpload.headers['content-type']
+			newPath += 'img/'
+		if req.body.fileName != ''
+			newName = req.body.fileName + '.' + req.files.fileUpload.name.split('.')[1]
+		else
+			newName = req.files.fileUpload.name
+
+		fs.writeFile newPath+newName, data, (err) ->
+			if err
+				console.log err
+
+	res.redirect('/admin')
+
 exports.admin_add_view = (req, res) ->
 	res.render('admin/add',
 		{ title: 'Add new blog article' }

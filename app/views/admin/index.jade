@@ -27,10 +27,14 @@ block body
 			div.jumbotron
 				h1= title
 			div(ng-view)
-				div
-					a(class="btn btn-default btn-sm btn-success", href="/admin/article/add") NEW &nbsp;&nbsp;
-						span.typcn.typcn-pen
-				div
+				div.col-lg-12
+					div.row
+						div.col-lg-2
+							a(class="btn btn-default btn-sm btn-success", href="/admin/article/add") NEW &nbsp;&nbsp;
+								span.typcn.typcn-pen
+						div.col-lg-10.pull-right
+							include upload
+				div.row
 					- each article in articles
 						div.row
 							mixin article(article)

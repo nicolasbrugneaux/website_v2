@@ -64,6 +64,10 @@
 
   app.post('/contact', routes.contact);
 
+  app.get('/public', routes["public"]);
+
+  app.get('/public/img', routes.public_images);
+
   app.get('/api/blog', routes.blog);
 
   app.param('articleid', routes.blog_article_param);
@@ -73,6 +77,8 @@
   app.post('/api/article/comment', routes.blog_article_comment);
 
   app.get('/admin', routes.isUser, routes.admin_all);
+
+  app.post('/admin', routes.isUser, routes.admin_upload_file);
 
   app.get('/admin/article/add', routes.isUser, routes.admin_add_view);
 

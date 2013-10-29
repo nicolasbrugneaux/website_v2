@@ -1,7 +1,9 @@
 (function() {
-  var articleProvider, models, userProvider;
+  var articleProvider, fs, models, userProvider;
 
   models = require('../models/models');
+
+  fs = require('fs');
 
   articleProvider = new models.ArticleProvider();
 
@@ -21,6 +23,28 @@
         articles: docs
       });
     });
+  };
+
+  exports.admin_upload_file = function(req, res) {
+    fs.readFile(req.files.fileUpload.path, function(err, data) {
+      var img, newName, newPath;
+      newPath = __dirname + "/../static/public/";
+      img = new RegExp(/^image\//);
+      if (img.test(req.files.fileUpload.headers['content-type'])) {
+        newPath += 'img/';
+      }
+      if (req.body.fileName !== '') {
+        newName = req.body.fileName + '.' + req.files.fileUpload.name.split('.')[1];
+      } else {
+        newName = req.files.fileUpload.name;
+      }
+      return fs.writeFile(newPath + newName, data, function(err) {
+        if (err) {
+          return console.log(err);
+        }
+      });
+    });
+    return res.redirect('/admin');
   };
 
   exports.admin_add_view = function(req, res) {
@@ -165,7 +189,7 @@
       rssfeed = "		<rss version=\"2.0\">		<channel>		<title>RSS Feed of nicolasbrugneaux.me</title>		<link>http://nicolasbrugneaux.me</link>		<description>This is the RSS feed of http://nicolasbrugneaux.me, website of a dedicated and ambitous student in Computer Science.</description>		<language>en-us</language>		<copyright>2013 nicolasbrugneaux.me</copyright>";
       for (_i = 0, _len = docs.length; _i < _len; _i++) {
         doc = docs[_i];
-        rssfeed += "			<item>			<title>" + doc.title + "</title>			<description>" + (doc.body.substr(0, 250) + '...') + "</description>			<link>http://nicolasbrugneaux.me/posts/" + doc._id + "</link>			<pubDate>" + doc.created_at + "</pubDate>			</item>			";
+        rssfeed += "			<item>			<title>" + doc.title + "</title>			<description>" + (doc.body.replace(/<\/?[^>]+(>|$)/g, "").substr(0, 400) + '...') + "</description>			<link>http://nicolasbrugneaux.me/blog/article/" + doc.slug + "</link>			<pubDate>" + doc.created_at + "</pubDate>			</item>			";
       }
       rssfeed += "</channel></rss>";
       return res.end(rssfeed);
@@ -208,6 +232,14 @@
   exports.contact = function(req, res) {
     console.log(req.body.mail);
     return res.redirect('/contact');
+  };
+
+  exports["public"] = function(req, res) {
+    return res.send(fs.readdirSync(__dirname + "/../static/public/"));
+  };
+
+  exports.public_images = function(req, res) {
+    return res.send(fs.readdirSync(__dirname + "/../static/public/img"));
   };
 
   /*
