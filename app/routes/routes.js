@@ -47,6 +47,16 @@
     return res.redirect('/admin');
   };
 
+  exports.admin_delete_file = function(req, res) {
+    var path;
+    path = __dirname + "/../static/public/" + req.body.file;
+    if (fs.lstatSync(path).isDirectory()) {
+      fs.rmdir(path);
+    }
+    fs.unlinkSync(path);
+    return res.redirect('/admin');
+  };
+
   exports.admin_add_view = function(req, res) {
     return res.render('admin/add', {
       title: 'Add new blog article'
@@ -138,10 +148,24 @@
       next(new Error('The article id is not having the correct length'));
     }
     return articleProvider.findById(id, function(error, docs) {
-      if (error) {
-        return next(new Error('Make sure you provided correct article id'));
-      } else if (!docs) {
-        return next(new Error('Posts loading failed'));
+      if (error || docs === null) {
+        return res.redirect('/admin');
+      } else {
+        req.docs = docs;
+        return next();
+      }
+    });
+  };
+
+  /*
+   GET article page by slug.
+  */
+
+
+  exports.blog_article_slug = function(req, res, next, slug) {
+    return articleProvider.findBySlug(slug, function(error, docs) {
+      if (error || docs === null) {
+        return res.redirect('/blog');
       } else {
         req.docs = docs;
         return next();
@@ -156,23 +180,27 @@
   };
 
   /*
-   POST comment
+    POST comment
   */
 
 
   exports.blog_article_comment = function(req, res) {
     var data;
-    data = {
-      author: req.body.author,
-      email: req.body.email,
-      body: req.body.body,
-      created: new Date()
-    };
-    return articleProvider.addComment(req.body.id, data, function(error, docs) {
-      return articleProvider.findById(req.body.id, function(error, docs) {
-        return res.send(docs);
+    if (req.body.author === '' || req.body.email === '' || req.body.body === '') {
+      return res.redirect('back');
+    } else {
+      data = {
+        author: req.body.author,
+        email: req.body.email,
+        body: req.body.body,
+        created: new Date()
+      };
+      return articleProvider.addComment(req.body.id, data, function(error, docs) {
+        return articleProvider.findById(req.body.id, function(error, docs) {
+          return res.send(docs);
+        });
       });
-    });
+    }
   };
 
   /*
@@ -186,10 +214,10 @@
     }, 0, 9999, function(error, docs) {
       var doc, rssfeed, _i, _len;
       res.setHeader("Content-Type: application/xml; charset=UTF-8");
-      rssfeed = "		<rss version=\"2.0\">		<channel>		<title>RSS Feed of nicolasbrugneaux.me</title>		<link>http://nicolasbrugneaux.me</link>		<description>This is the RSS feed of http://nicolasbrugneaux.me, website of a dedicated and ambitous student in Computer Science.</description>		<language>en-us</language>		<copyright>2013 nicolasbrugneaux.me</copyright>";
+      rssfeed = "    <rss version=\"2.0\">    <channel>    <title>RSS Feed of nicolasbrugneaux.me</title>    <link>http://nicolasbrugneaux.me</link>    <description>This is the RSS feed of http://nicolasbrugneaux.me, website of a dedicated and ambitous student in Computer Science.</description>    <language>en-us</language>    <copyright>2013 nicolasbrugneaux.me</copyright>";
       for (_i = 0, _len = docs.length; _i < _len; _i++) {
         doc = docs[_i];
-        rssfeed += "			<item>			<title>" + doc.title + "</title>			<description>" + (doc.body.replace(/<\/?[^>]+(>|$)/g, "").substr(0, 400) + '...') + "</description>			<link>http://nicolasbrugneaux.me/blog/article/" + doc.slug + "</link>			<pubDate>" + doc.created_at + "</pubDate>			</item>			";
+        rssfeed += "      <item>      <title>" + doc.title + "</title>      <description>" + (doc.body.replace(/<\/?[^>]+(>|$)/g, "").substr(0, 400) + '...') + "</description>      <link>http://nicolasbrugneaux.me/blog/article/" + doc.slug + "</link>      <pubDate>" + doc.created_at + "</pubDate>      </item>      ";
       }
       rssfeed += "</channel></rss>";
       return res.end(rssfeed);
@@ -235,11 +263,17 @@
   };
 
   exports["public"] = function(req, res) {
-    return res.send(fs.readdirSync(__dirname + "/../static/public/"));
-  };
-
-  exports.public_images = function(req, res) {
-    return res.send(fs.readdirSync(__dirname + "/../static/public/img"));
+    var dir, html, item, _i, _len;
+    console.log('test');
+    console.log(req.param.route);
+    dir = fs.readdirSync(__dirname + ("/../static" + req.route.path));
+    html = "<ul>";
+    for (_i = 0, _len = dir.length; _i < _len; _i++) {
+      item = dir[_i];
+      html += "<li><a href=" + item + ">" + item + "</li>";
+    }
+    html += "</ul>";
+    return res.send(html);
   };
 
   /*

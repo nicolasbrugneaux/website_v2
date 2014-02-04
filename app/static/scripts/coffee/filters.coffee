@@ -1,12 +1,12 @@
 'use strict'
 
 ###
-	@Filters
+  @Filters
 ###
 
 myApp = angular.module('myApp.filters', [])
 
 myApp.filter('interpolate', (version) ->
-	(text) ->
-		String(text).replace(/\%VERSION\%/mg, version)
+  (text) ->
+    String(text).replace(/\%VERSION\%/mg, version)
 )

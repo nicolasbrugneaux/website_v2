@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   /*
-  	@Filters
+    @Filters
   */
 
   var myApp;

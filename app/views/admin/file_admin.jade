@@ -1,0 +1,16 @@
+form(action="", method="post", enctype="multipart/form-data")
+  div.col-lg-10
+    div.col-lg-5
+      input(class="btn btn-default btn-sm btn-success" type="file", name="fileUpload")
+    div.col-lg-7
+      label.sr-only(for="fileName") New name
+      input.form-control(name="fileName" type="text" placeholder="New name..." value="")
+  div.col-lg-2
+    input(type="submit",value="Upload",name="upload",class="btn btn-default btn-sm btn-success typcn.typcn-upload")
+br
+form(action="admin/delete", method="post", enctype="multipart/form-data")
+  div.col-lg-10
+    label.sr-only(for="file") File to delete
+    input.form-control(name="file" type="text" placeholder="File to delete..." value="")
+  div.col-lg-2
+    input(type="submit",value="Delete",class="btn btn-default btn-sm btn-success typcn.typcn-upload")

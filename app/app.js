@@ -1,5 +1,5 @@
 /*
-	Module dependencies
+  Module dependencies
 */
 
 
@@ -19,7 +19,7 @@
   app = module.exports = express();
 
   /*
-  	Configuration
+    Configuration
   */
 
 
@@ -40,7 +40,10 @@
       })
     }));
     app.use(express["static"](path.join(__dirname, 'static')));
-    app.use('/static/public', express["static"](path.join(__dirname, 'public')));
+    app.use('/public', express["static"](path.join(__dirname, 'static/public')));
+    app.use('/public', express.directory(path.join(__dirname, 'static/public'), {
+      icons: true
+    }));
     app.use(app.router);
     if (app.get('env') === 'development') {
       app.use(express.errorHandler({
@@ -54,7 +57,7 @@
   });
 
   /*
-  	Routes
+    Routes
   */
 
 
@@ -64,13 +67,9 @@
 
   app.post('/contact', routes.contact);
 
-  app.get('/public', routes["public"]);
-
-  app.get('/public/img', routes.public_images);
-
   app.get('/api/blog', routes.blog);
 
-  app.param('articleid', routes.blog_article_param);
+  app.param('slug', routes.blog_article_slug);
 
   app.get('/api/article/:slug', routes.blog_article_view);
 
@@ -80,9 +79,13 @@
 
   app.post('/admin', routes.isUser, routes.admin_upload_file);
 
+  app.post('/admin/delete', routes.isUser, routes.admin_delete_file);
+
   app.get('/admin/article/add', routes.isUser, routes.admin_add_view);
 
   app.post('/admin/article/add', routes.isUser, routes.admin_add);
+
+  app.param('articleid', routes.blog_article_param);
 
   app.get('/admin/article/edit/:articleid', routes.isUser, routes.admin_edit_view);
 
@@ -103,7 +106,7 @@
   app.get('*', routes.index);
 
   /*
-  	Start Server
+    Start Server
   */
 
 

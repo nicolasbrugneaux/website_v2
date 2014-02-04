@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   /*
-  	@Services
+    @Services
   */
 
   var myApp;

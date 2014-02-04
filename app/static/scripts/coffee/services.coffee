@@ -1,7 +1,7 @@
 'use strict'
 
 ###
-	@Services 
+  @Services
 ###
 
 # Demonstrate how to register services

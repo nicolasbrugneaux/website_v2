@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   /*
-  	@app: Declare app level module which depends on filters, and services
+    @app: Declare app level module which depends on filters, and services
   */
 
   var myApp;

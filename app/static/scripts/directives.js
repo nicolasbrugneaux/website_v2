@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   /*
-  	@Directives
+    @Directives
   */
 
   var myApp;
