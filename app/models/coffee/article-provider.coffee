@@ -49,7 +49,6 @@ class ArticleProvider extends Provider
           articles = [articles]
 
         for article in articles
-          article.full_slug
           article.create_at = new Date()
           if article.slug is undefined
             article.slug = slugify(article.title)

@@ -131,7 +131,6 @@
           }
           for (_i = 0, _len = articles.length; _i < _len; _i++) {
             article = articles[_i];
-            article.full_slug;
             article.create_at = new Date();
             if (article.slug === void 0) {
               article.slug = slugify(article.title);

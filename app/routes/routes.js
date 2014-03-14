@@ -262,20 +262,6 @@
     return res.redirect('/contact');
   };
 
-  exports["public"] = function(req, res) {
-    var dir, html, item, _i, _len;
-    console.log('test');
-    console.log(req.param.route);
-    dir = fs.readdirSync(__dirname + ("/../static" + req.route.path));
-    html = "<ul>";
-    for (_i = 0, _len = dir.length; _i < _len; _i++) {
-      item = dir[_i];
-      html += "<li><a href=" + item + ">" + item + "</li>";
-    }
-    html += "</ul>";
-    return res.send(html);
-  };
-
   /*
    GET login page.
   */

@@ -12,13 +12,3 @@ exports.partials = (req, res) ->
 exports.contact = (req, res) ->
   console.log req.body.mail
   res.redirect('/contact')
-
-exports.public = (req, res) ->
-  console.log('test')
-  console.log(req.param.route)
-  dir = fs.readdirSync(__dirname + "/../static#{req.route.path}")
-  html = "<ul>"
-  for item in dir
-    html += "<li><a href=#{item}>#{item}</li>"
-  html += "</ul>"
-  res.send(html)

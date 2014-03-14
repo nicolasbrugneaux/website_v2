@@ -24,7 +24,6 @@ class UserProvider extends Provider
         (err, results) ->
           if err then callback(erro) else callback(null, results)
         )
-
     )
 
   findById: (id, callback)->
