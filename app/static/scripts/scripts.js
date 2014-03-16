@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   /*
-  	@app: Declare app level module which depends on filters, and services
+    @app: Declare app level module which depends on filters, and services
   */
 
   var create_dynamic_menu, myApp, slide_notifications;
@@ -59,7 +59,7 @@
   'use strict';
 
   /*
-  	@Controllers
+    @Controllers
   */
 
 
@@ -129,8 +129,7 @@
   ]);
 
   create_dynamic_menu = function() {
-    var closeClickFn, menu, menu_links, overlay, resetMenu, trigger,
-      _this = this;
+    var closeClickFn, menu, menu_links, overlay, resetMenu, trigger;
     menu = $('#bt-menu');
     trigger = $('#bt-menu a.bt-menu-trigger');
     overlay = $('<div>').addClass('bt-overlay');
@@ -234,12 +233,12 @@
               if ($scope.blog.articles.length === 0) {
                 $scope.blog.articles.push({
                   article: article,
-                  body_display: article.body.substr(0, 500) + "..."
+                  body_display: "" + (article.body.substr(0, 500)) + "..."
                 });
               } else {
                 $scope.blog.articles.push({
                   article: article,
-                  body_display: article.body.substr(0, 250) + "..."
+                  body_display: "" + (article.body.substr(0, 250)) + "..."
                 });
               }
             }
@@ -314,7 +313,7 @@
   'use strict';
 
   /*
-  	@Directives
+    @Directives
   */
 
 
@@ -329,7 +328,7 @@
   'use strict';
 
   /*
-  	@Filters
+    @Filters
   */
 
 
@@ -344,7 +343,7 @@
   'use strict';
 
   /*
-  	@Services
+    @Services
   */
 
 
