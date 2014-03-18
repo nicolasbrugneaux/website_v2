@@ -23,7 +23,7 @@ div.article(ng-controller="ArticleCtrl" ng-init="init()")
 
 
 	hr
-	div.article-body.align-justify
+	div.article-body
 		div.body(ng-bind-html-unsafe="article.article.body")
 	hr
 	div.row#comments(ng-switch="article.article.comments.length > 0")
